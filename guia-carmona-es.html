@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dear Notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Bricolage+Grotesque:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fefefe;
+            --text-color: #111;
+            --link-color: #8b7fc4;
+            --border-color: #ddd;
+            --sidenote-color: #666;
+            --lilac: #8b7fc4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--text-color);
+            background: var(--bg-color);
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+        }
+
+        .title-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .site-title {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin: 0;
+        }
+
+        .language-switcher {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .language-switcher a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 0.8rem;
+            border: none;
+            transition: color 0.2s;
+        }
+
+        .language-switcher a:first-child {
+            margin-left: 0;
+        }
+
+        .language-switcher a:hover,
+        .language-switcher a.active {
+            color: var(--lilac);
+        }
+
+        nav {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-right: 1.5rem;
+            transition: color 0.2s;
+            border: none;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--lilac);
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: 1fr 55ch 1fr;
+            gap: 2rem;
+        }
+
+        article {
+            grid-column: 2;
+        }
+
+        h1 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        p {
+            margin-bottom: 1.4rem;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            border-bottom: 1px solid var(--link-color);
+            transition: border-color 0.2s;
+        }
+
+        a:hover {
+            border-bottom-color: transparent;
+        }
+
+        .sidenote {
+            grid-column: 3;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: var(--sidenote-color);
+            padding-left: 1rem;
+            border-left: 2px solid var(--border-color);
+            align-self: start;
+        }
+
+        .sidenote-ref {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            vertical-align: super;
+            color: var(--lilac);
+            border: none;
+            cursor: pointer;
+        }
+
+        code {
+            font-family: 'Inter', monospace;
+            background: #f5f5f5;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+
+        pre {
+            font-family: 'Inter', monospace;
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 1.4rem;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.4rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        blockquote {
+            border-left: 3px solid var(--border-color);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--sidenote-color);
+        }
+
+        footer {
+            grid-column: 2;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--sidenote-color);
+            font-family: 'Inter', sans-serif;
+        }
+
+        @media (max-width: 1200px) {
+            main {
+                grid-template-columns: 1fr;
+                max-width: 65ch;
+                margin: 0 auto;
+            }
+
+            article {
+                grid-column: 1;
+            }
+
+            .sidenote {
+                grid-column: 1;
+                margin-top: 0.5rem;
+                margin-bottom: 1rem;
+                padding-left: 1rem;
+            }
+
+            footer {
+                grid-column: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+                font-size: 16px;
+            }
+
+            .title-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            nav a {
+                display: inline-block;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: contents;
+        }
+
+        .intro {
+            font-size: 1.2rem;
+            color: var(--sidenote-color);
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="title-bar">
+            <h1 class="site-title">Guia Carmona • Dear Notes</h1>
+            <div class="language-switcher">
+                <a href="index.html">EN</a>
+                <a href="index-es.html" class="active">ES</a>
+                <a href="index-de.html">DE</a>
+            </div>
+        </div>
+        <nav>
+            <a href="#sobre-mi" class="nav-link active" data-page="sobre-mi">Sobre mí</a>
+            <a href="#newsletter" class="nav-link" data-page="newsletter">Newsletter</a>
+            <a href="#digital-garden" class="nav-link" data-page="digital-garden">Digital Garden</a>
+            <a href="#proximamente" class="nav-link" data-page="proximamente">Próximamente</a>
+            <a href="#acompanamiento" class="nav-link" data-page="acompanamiento">Acompañamiento</a>
+            <a href="#contacto" class="nav-link" data-page="contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Página Sobre mí -->
+        <div class="page active" id="sobre-mi-page">
+            <article>
+                <h1>Sobre mí</h1>
+                
+                <p>¡Hola! Soy Guia Carmona, y este es mi rincón de internet.</p>
+
+                <p>Escribe tu historia aquí. ¿A qué te dedicas? ¿Qué te apasiona? ¿Qué te llevó a crear este sitio web?</p>
+
+                <h2>Formación</h2>
+
+                <p>Comparte tu formación, educación, experiencia o lo que consideres relevante.</p>
+
+                <h2>Intereses</h2>
+
+                <p>¿Qué te interesa? ¿En qué pasas tu tiempo? ¿Qué te emociona?</p>
+
+                <blockquote>
+                    "Agrega una cita significativa que resuene contigo."
+                </blockquote>
+
+                <p>Continúa contando tu historia...</p>
+            </article>
+        </div>
+
+        <!-- Página Newsletter -->
+        <div class="page" id="newsletter-page">
+            <article>
+                <h1>Newsletter</h1>
+
+                <p>Contenido del newsletter aquí.</p>
+
+                <p>Explica qué tipo de contenido compartes en tu newsletter, con qué frecuencia envías actualizaciones y por qué vale la pena suscribirse.</p>
+
+                <h2>Suscríbete</h2>
+
+                <p>[Aquí iría tu formulario de suscripción al newsletter]</p>
+            </article>
+        </div>
+
+        <!-- Página Digital Garden -->
+        <div class="page" id="digital-garden-page">
+            <article>
+                <h1>Digital Garden</h1>
+
+                <p>Este es tu jardín digital — un espacio para ideas en crecimiento, notas interconectadas y pensamientos en evolución.</p>
+
+                <h2>Notas Recientes</h2>
+
+                <p><a href="#">Sobre Tipografía y Lectura</a> — Pensamientos sobre cómo el diseño afecta la comprensión.</p>
+
+                <p><a href="#">Construyendo un Sitio Web Simple</a> — Mi viaje creando este sitio.</p>
+
+                <p><a href="#">El Valor de la Lentitud</a> — Por qué tomarse tiempo importa en un mundo acelerado.</p>
+
+                <h2>Temas</h2>
+
+                <p>Organiza tus notas por temas, proyectos o cualquier estructura que tenga sentido para ti.</p>
+            </article>
+        </div>
+
+        <!-- Página Próximamente -->
+        <div class="page" id="proximamente-page">
+            <article>
+                <h1>Próximamente</h1>
+
+                <p>¿Qué viene después? Comparte tus planes futuros, proyectos en desarrollo o ideas en las que estás trabajando.</p>
+
+                <h2>Proyectos en proceso</h2>
+
+                <p>Describe los proyectos que estás desarrollando actualmente.</p>
+
+                <h2>Ideas futuras</h2>
+
+                <p>Comparte hacia dónde te diriges y qué te emociona para el futuro.</p>
+            </article>
+        </div>
+
+        <!-- Página Acompañamiento -->
+        <div class="page" id="acompanamiento-page">
+            <article>
+                <h1>Acompañamiento</h1>
+
+                <p>Describe tus servicios de acompañamiento. ¿Qué tipo de apoyo ofreces? ¿A quién ayudas?</p>
+
+                <h2>Qué ofrezco</h2>
+
+                <p>Detalla los servicios o tipos de acompañamiento que brindas.</p>
+
+                <h2>Para quién es</h2>
+
+                <p>Describe a las personas con las que trabajas y los desafíos que les ayudas a abordar.</p>
+
+                <h2>Cómo trabajamos juntas</h2>
+
+                <p>Explica tu proceso, enfoque y qué pueden esperar quienes trabajen contigo.</p>
+            </article>
+        </div>
+
+        <!-- Página de Contacto -->
+        <div class="page" id="contacto-page">
+            <article>
+                <h1>Contacto</h1>
+
+                <p>Me encantaría escucharte.</p>
+
+                <h2>Email</h2>
+
+                <p><a href="mailto:tu@email.com">tu@email.com</a></p>
+
+                <h2>Redes Sociales</h2>
+
+                <p>Encuéntrame en:</p>
+
+                <ul>
+                    <li><a href="#">Twitter / X</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Mastodon</a></li>
+                </ul>
+
+                <p>Normalmente respondo en unos días. ¡Espero conectar contigo!</p>
+            </article>
+        </div>
+
+        <footer>
+            <p>© 2025 Guia Carmona • <a href="#impressum" class="nav-link" data-page="impressum">Aviso legal</a> • <a href="#datenschutz" class="nav-link" data-page="datenschutz">Privacidad</a> • <a href="#colofon" class="nav-link" data-page="colofon">Colofón</a> • <a href="https://instagram.com" target="_blank">Instagram</a></p>
+        </footer>
+
+        <!-- Página Aviso legal -->
+        <div class="page" id="impressum-page">
+            <article>
+                <h1>Aviso legal</h1>
+                <p>Información legal requerida va aquí.</p>
+            </article>
+        </div>
+
+        <!-- Página Privacidad -->
+        <div class="page" id="datenschutz-page">
+            <article>
+                <h1>Privacidad</h1>
+                <p>Política de privacidad va aquí.</p>
+            </article>
+        </div>
+
+        <!-- Página Colofón -->
+        <div class="page" id="colofon-page">
+            <article>
+                <h1>Colofón</h1>
+
+                <p>Este sitio web fue creado en enero de 2025 con tecnologías web simples y modernas.</p>
+
+                <h2>Tipografía</h2>
+
+                <p>El texto principal usa <a href="https://fonts.google.com/specimen/Inter">Inter</a>, una fuente hermosa diseñada específicamente para pantallas de computadora. Los títulos usan <a href="https://fonts.google.com/specimen/Bricolage+Grotesque">Bricolage Grotesque Light</a>, una fuente contemporánea con un carácter distintivo y juguetón.</p>
+
+                <h2>Diseño</h2>
+
+                <p>El diseño prioriza la tipografía clara, el uso cuidadoso del espacio y las notas al margen para información complementaria.</p>
+
+                <h2>Tecnología</h2>
+
+                <p>Esta es una página HTML estática con JavaScript vanilla para la navegación. Sin frameworks, sin herramientas de compilación — solo código limpio y simple.</p>
+            </article>
+        </div>
+    </main>
+
+    <script>
+        // Navegación simple
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Eliminar clase active de todos los enlaces y páginas
+                navLinks.forEach(l => l.classList.remove('active'));
+                pages.forEach(p => p.classList.remove('active'));
+                
+                // Agregar clase active al enlace clickeado
+                link.classList.add('active');
+                
+                // Mostrar página correspondiente
+                const pageId = link.dataset.page + '-page';
+                document.getElementById(pageId).classList.add('active');
+                
+                // Actualizar hash de URL
+                window.location.hash = link.dataset.page;
+                
+                // Scroll al inicio
+                window.scrollTo(0, 0);
+            });
+        });
+
+        // Manejar navegación directa por hash de URL
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.slice(1);
+            if (hash) {
+                const link = document.querySelector(`[data-page="${hash}"]`);
+                if (link) link.click();
+            }
+        });
+    </script>
+</body>
+</html>
