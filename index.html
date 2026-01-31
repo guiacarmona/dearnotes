@@ -599,3 +599,13 @@ If you want to talk about knowledge systems, thinking practices, or work togethe
         // Handle direct URL hash navigation
         window.addEventListener('load', () => {
             const hash = window.location.hash.substring(1);
+            if (hash) {
+                const targetLink = document.querySelector(`.nav-link[data-page="${hash}"]`);
+                if (targetLink) {
+                    targetLink.click();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

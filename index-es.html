@@ -581,4 +581,13 @@
         // Manejar navegación directa por hash de URL
         window.addEventListener('load', () => {
             const hash = window.location.hash.substring(1);
- 
+            if (hash) {
+                const targetLink = document.querySelector(`.nav-link[data-page="${hash}"]`);
+                if (targetLink) {
+                    targetLink.click();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
