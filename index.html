@@ -253,6 +253,38 @@
             color: #666;
             margin-bottom: 2rem;
         }
+
+        .about-header {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .about-header .about-text {
+            flex: 1;
+        }
+
+        .about-header .about-photo {
+            width: 280px;
+            flex-shrink: 0;
+        }
+
+        .about-header .about-photo img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .about-header {
+                flex-direction: column;
+            }
+
+            .about-header .about-photo {
+                width: 100%;
+                max-width: 320px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -282,15 +314,22 @@
             <!-- About Me Page -->
             <div class="page active" id="about-me-page">
                 <article>
-                    <h1>About Me</h1>
-                    
-                    <p>Hello! I'm Guia, I translate, write, learn, and teach about everything that fascinates me. Curiosity has been my greatest ally, and making space for it has allowed me to explore many paths.</p>
+                    <div class="about-header">
+                        <div class="about-text">
+                            <h1>About Me</h1>
 
-                    <h2>What I Do</h2>
+                            <p>Hello! I'm Guia, I translate, write, learn, and teach about everything that fascinates me. Curiosity has been my greatest ally, and making space for it has allowed me to explore many paths.</p>
 
-                    <p>I created Dear Notes, an independent project exploring knowledge management from many angles: as a strategic tool for companies, as a thinking practice, and as a relationship with what we (don't) know. Through writing, workshops, and one-on-one work, I help people and organizations build sustainable ways to capture, organize, and use what they learn—not as productivity theater, but as a practice for living with ideas over time.</p>
+                            <h2>What I Do</h2>
 
-                    <p>By day, I am lucky to work as UX Content and Localization Manager at Trusted Shops, a German e-commerce company, with a fantastic team, where I focus on our (international) customers by ensuring content works seamlessly and resonates across languages and markets.</p>
+                            <p>I created Dear Notes, an independent project exploring knowledge management from many angles: as a strategic tool for companies, as a thinking practice, and as a relationship with what we (don't) know. Through writing, workshops, and one-on-one work, I help people and organizations build sustainable ways to capture, organize, and use what they learn—not as productivity theater, but as a practice for living with ideas over time.</p>
+
+                            <p>By day, I am lucky to work as UX Content and Localization Manager at Trusted Shops, a German e-commerce company, with a fantastic team, where I focus on our (international) customers by ensuring content works seamlessly and resonates across languages and markets.</p>
+                        </div>
+                        <div class="about-photo">
+                            <img src="guia-portrait.jpg" alt="Guia Carmona">
+                        </div>
+                    </div>
 
                     <h2>A Bit of Background</h2>
 
