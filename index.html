@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dear Notes</title>
+    <style>
+        @font-face {
+            font-family: 'Klarheit Kurrent';
+            src: url('ESKlarheitKurrent-Light.woff2') format('woff2'),
+                 url('ESKlarheitKurrent-Light.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Larsseit';
+            src: url('Larsseit-Light.woff2') format('woff2'),
+                 url('Larsseit-Light.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        :root {
+            --bg-color: #fefefe;
+            --text-color: #000000;
+            --link-color: #D1B03C;
+            --border-color: #DCD1CD;
+            --secondary-color: #DCD1CD;
+            --mustard: #D1B03C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Larsseit', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 18px;
+            line-height: 1.7;
+            letter-spacing: 0.02em;
+            color: var(--text-color);
+            background: var(--bg-color);
+            padding: 2rem 4rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+        }
+
+        .title-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.3rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .site-title {
+            font-family: 'Klarheit Kurrent', serif;
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 0;
+            margin: 0;
+        }
+
+        .language-switcher {
+            font-family: 'Larsseit', sans-serif;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .language-switcher a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 0.8rem;
+            border: none;
+            transition: color 0.2s;
+        }
+
+        .language-switcher a:first-child {
+            margin-left: 0;
+        }
+
+        .language-switcher a:hover,
+        .language-switcher a.active {
+            color: var(--mustard);
+        }
+
+        nav {
+            font-family: 'Larsseit', sans-serif;
+            font-size: 16px;
+            margin-top: -0.8rem;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-right: 1rem;
+            transition: color 0.2s;
+            border: none;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--mustard);
+        }
+
+        main {
+            max-width: 65ch;
+        }
+
+        article {
+            width: 100%;
+        }
+
+        h1 {
+            font-family: 'Klarheit Kurrent', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-family: 'Klarheit Kurrent', serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 0;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-family: 'Larsseit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        p {
+            margin-bottom: 1.4rem;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            border-bottom: 1px solid var(--link-color);
+            transition: border-color 0.2s;
+        }
+
+        a:hover {
+            border-bottom-color: transparent;
+        }
+
+        code {
+            font-family: 'Larsseit', monospace;
+            background: #f5f5f5;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+
+        pre {
+            font-family: 'Larsseit', monospace;
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 1.4rem;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.4rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        blockquote {
+            border-left: 3px solid var(--border-color);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: #666;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: #666;
+            font-family: 'Larsseit', sans-serif;
+        }
+
+        /* Hamburger Menu Styles */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #333;
+            padding: 10px;
+            z-index: 1001;
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+                font-size: 16px;
+            }
+
+            .title-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 280px;
+                height: 100vh;
+                background-color: white;
+                flex-direction: column;
+                padding: 80px 30px 20px 30px;
+                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+                z-index: 1000;
+                overflow-y: auto;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav a {
+                display: block;
+                margin: 0 0 15px 0;
+                padding: 10px 0;
+                width: 100%;
+            }
+
+            .language-switcher {
+                margin-top: 20px;
+                padding-top: 20px;
+                border-top: 1px solid var(--border-color);
+            }
+
+            /* Overlay for when menu is open */
+            body.menu-open::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.5);
+                z-index: 999;
+            }
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .intro {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                ☰
+            </button>
+            <div class="title-bar">
+                <a href="#about-me" class="nav-link logo-link" data-page="about-me" style="border: none; display: inline-block; line-height: 0;">
+                    <img src="logo-guia.svg" alt="Logo" style="height: 4.5rem; display: block;">
+                </a>
+                <div class="language-switcher">
+                    <a href="index.html" class="active">EN</a>
+                    <a href="index-es.html">ES</a>
+                    <a href="index-de.html">DE</a>
+                </div>
+            </div>
+            <nav id="navMenu">
+                <a href="#about-me" class="nav-link active" data-page="about-me">About me</a>
+                <a href="#newsletter" class="nav-link" data-page="newsletter">Newsletter</a>
+                <a href="#digital-garden" class="nav-link" data-page="digital-garden">Digital Garden</a>
+                <a href="#whats-next" class="nav-link" data-page="whats-next">What's next?</a>
+                <a href="#offerings" class="nav-link" data-page="offerings">Offerings</a>
+                <a href="#contact" class="nav-link" data-page="contact">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <!-- About Me Page -->
+            <div class="page active" id="about-me-page">
+                <article>
+                    <h1>About Me</h1>
+                    
+                    <p>Hello! I'm Guia, I translate, write, learn, and teach about everything that fascinates me. Curiosity has been my greatest ally, and making space for it has allowed me to explore many paths.</p>
+
+                    <h2>What I Do</h2>
+                    I created [Dear Notes](link), an independent project exploring knowledge management from many angles: as a strategic tool for companies, as a thinking practice, and as a relationship with what we (don't) know. Through writing, workshops, and one-on-one work, I help people and organizations build sustainable ways to capture, organize, and use what they learn—not as productivity theater, but as a practice for living with ideas over time.
+
+By day, I am lucky to work as UX Content and Localization Manager at Trusted Shops, a German e-commerce company, with a fantastic team, where I focus on our (international) customers by ensuring content works seamlessly and resonates across languages and markets.
+
+                    <h2>A Bit of Background</h2>
+
+                    <p>I grew up in Málaga, Spain, in the 1990s—in a flat with high ceilings near the sea and the English Cemetery. Art and making things were part of daily life. My childhood was filled with mountains, reading, playing with my siblings and cousins, bougainvillea, and bicycles.
+
+When I turned 10, my siblings gifted me my first computer, along with the Encarta 2000 encyclopedia on CD-ROM. Between Word, those discs, and all the books at home, I spent my time writing stories and inventing worlds. I haven't stopped reading, writing, or learning new things since.
+
+I studied Translation and Interpreting (German and English) in Granada. After graduating, I moved to Münster, Germany, where I've lived since 2012.
+
+My career has wound through translation, localization, content strategy, and knowledge work. I was Language Lead at Notion from 2020 to 2024. In 2022 and 2023, I worked as Course Manager for Tiago Forte's *Building a Second Brain* at Forte Labs. Before that, I spent five years at Johnson & Johnson MedTech and worked as a freelance translator and teacher.
+
+
+                    <h2>What I Care About</h2>
+
+                    <p>I care and think about personal knowledge management A LOT. How do we capture what matters? How do we let ideas develop without forcing them? How do we build systems that support actual thinking, not just the appearance of productivity?
+                    
+                        My newsletter, notes and conversations—they're all experiments in using writing to figure out what I actually think.
+
+I live in Münster with my husband and son in a housing project where we are working toward more sustainable ways of living together.</p>
+
+                    
+If you want to talk about knowledge systems, thinking practices, or work together on translation and localization strategy, reach out at [email].</p>
+                    **Get in Touch**
+
+                    <blockquote>
+                        "Add a meaningful quote that resonates with you."
+                    </blockquote>
+
+                    <p>Continue telling your story...</p>
+                </article>
+            </div>
+
+            <!-- Newsletter Page -->
+            <div class="page" id="newsletter-page">
+                <article>
+                    <h1>Newsletter</h1>
+
+                    <p>Newsletter content goes here.</p>
+
+                    <p>Explain what kind of content you share in your newsletter, how often you send updates, and why it's worth subscribing.</p>
+
+                    <h2>Subscribe</h2>
+
+                    <p>[Your newsletter signup form would go here]</p>
+                </article>
+            </div>
+
+            <!-- Digital Garden Page -->
+            <div class="page" id="digital-garden-page">
+                <article>
+                    <h1>Digital Garden</h1>
+
+                    <p>This is your digital garden — a space for growing ideas, interconnected notes, and evolving thoughts.</p>
+
+                    <h2>Recent Notes</h2>
+
+                    <p><a href="#">On Typography and Reading</a> — Thoughts about how design affects comprehension.</p>
+
+                    <p><a href="#">Building a Simple Website</a> — My journey creating this site.</p>
+
+                    <p><a href="#">The Value of Slowness</a> — Why taking time matters in a fast world.</p>
+
+                    <h2>Topics</h2>
+
+                    <p>Organize your notes by topics, projects, or whatever structure makes sense to you.</p>
+                </article>
+            </div>
+
+            <!-- What's Next Page -->
+            <div class="page" id="whats-next-page">
+                <article>
+                    <h1>What's Next?</h1>
+
+                    <p>What's coming up? Share your future plans, projects in development, or ideas you're working on.</p>
+
+                    <h2>Current Projects</h2>
+
+                    <p>Describe projects you're currently developing.</p>
+
+                    <h2>Future Ideas</h2>
+
+                    <p>Share where you're headed and what excites you about the future.</p>
+                </article>
+            </div>
+
+            <!-- Offerings Page -->
+            <div class="page" id="offerings-page">
+                <article>
+                    <h1>Offerings</h1>
+
+                    <p>Describe your services or offerings. What kind of support do you provide? Who do you help?</p>
+
+                    <h2>What I Offer</h2>
+
+                    <p>Detail the services or types of accompaniment you provide.</p>
+
+                    <h2>Who It's For</h2>
+
+                    <p>Describe the people you work with and the challenges you help them address.</p>
+
+                    <h2>How We Work Together</h2>
+
+                    <p>Explain your process, approach, and what people can expect when working with you.</p>
+                </article>
+            </div>
+
+            <!-- Contact Page -->
+            <div class="page" id="contact-page">
+                <article>
+                    <h1>Contact</h1>
+
+                    <p>I'd love to hear from you.</p>
+
+                    <h2>Email</h2>
+
+                    <p><a href="/cdn-cgi/l/email-protection#81e9e4ededeec1e4f9e0ecf1ede4afe2eeec"><span class="__cf_email__" data-cfemail="5038353c3c3f103528313d203c357e333f3d">[email&#160;protected]</span></a></p>
+
+                    <h2>Social</h2>
+
+                    <p>Find me on:</p>
+
+                    <ul>
+                        <li><a href="#">Twitter / X</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Mastodon</a></li>
+                    </ul>
+
+                    <p>I typically respond within a few days. Looking forward to connecting!</p>
+                </article>
+            </div>
+
+            <!-- Impressum Page -->
+            <div class="page" id="impressum-page">
+                <article>
+                    <h1>Impressum</h1>
+                    <p>Legal information goes here.</p>
+                </article>
+            </div>
+
+            <!-- Privacy Page -->
+            <div class="page" id="privacy-page">
+                <article>
+                    <h1>Privacy</h1>
+                    <p>Privacy policy goes here.</p>
+                </article>
+            </div>
+
+            <!-- Colophon Page -->
+            <div class="page" id="colophon-page">
+                <article>
+                    <h1>Colophon</h1>
+
+                    <p>This website was created in January 2025 following my brand guidelines.</p>
+
+                    <h2>Typography</h2>
+
+                    <p>The main text uses Larsseit Light, a clean sans-serif designed for excellent readability. Headings use Klarheit Kurrent Light, a distinctive font that forms the basis of my brand identity.</p>
+
+                    <h2>Design</h2>
+
+                    <p>The design follows my brand guidelines: clear typography, thoughtful use of space, and sidenotes for supplementary information.</p>
+
+                    <h2>Colors</h2>
+
+                    <p>Primary colors are Black (#000000) and Mustard Yellow (#D1B03C). Secondary colors include Taupe (#DCD1CD) and White (#FFFFFF).</p>
+
+                    <h2>Technology</h2>
+
+                    <p>This is a static HTML page with vanilla JavaScript for navigation. No frameworks, no build tools — just clean, simple code.</p>
+                </article>
+            </div>
+
+            <footer>
+                <p>© 2025 Guia Carmona • <a href="#impressum" class="nav-link" data-page="impressum">Impressum</a> • <a href="#privacy" class="nav-link" data-page="privacy">Privacy</a> • <a href="#colophon" class="nav-link" data-page="colophon">Colophon</a> • <a href="https://instagram.com" target="_blank">Instagram</a></p>
+            </footer>
+        </main>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Hamburger Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const body = document.body;
+
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                navMenu.classList.toggle('active');
+                body.classList.toggle('menu-open');
+                
+                // Change icon between hamburger and X
+                if (navMenu.classList.contains('active')) {
+                    menuToggle.innerHTML = '✕';
+                } else {
+                    menuToggle.innerHTML = '☰';
+                }
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInsideMenu = navMenu.contains(event.target);
+                const isClickOnToggle = menuToggle.contains(event.target);
+                
+                if (!isClickInsideMenu && !isClickOnToggle && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    menuToggle.innerHTML = '☰';
+                }
+            });
+        }
+
+        // Simple navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                if (navMenu && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    if (menuToggle) menuToggle.innerHTML = '☰';
+                }
+                
+                // Remove active class from all links and pages
+                navLinks.forEach(l => l.classList.remove('active'));
+                pages.forEach(p => p.classList.remove('active'));
+                
+                // Add active class to clicked link
+                link.classList.add('active');
+                
+                // Show corresponding page
+                const pageId = link.dataset.page + '-page';
+                document.getElementById(pageId).classList.add('active');
+                
+                // Update URL hash
+                window.location.hash = link.dataset.page;
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            });
+        });
+
+        // Handle direct URL hash navigation
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.substring(1);
