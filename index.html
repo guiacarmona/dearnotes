@@ -213,20 +213,6 @@
             font-family: 'Larsseit', sans-serif;
         }
 
-        /* Hamburger Menu Styles */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 28px;
-            cursor: pointer;
-            color: #333;
-            padding: 10px;
-            z-index: 1001;
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-        }
 
         @media (max-width: 768px) {
             body {
@@ -248,52 +234,9 @@
                 font-size: 1.5rem;
             }
 
-            .menu-toggle {
-                display: block;
-            }
-
-            nav {
-                display: none;
-                position: fixed;
-                top: 0;
-                right: 0;
-                width: 280px;
-                height: 100vh;
-                background-color: white;
-                flex-direction: column;
-                padding: 80px 30px 20px 30px;
-                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-                z-index: 1000;
-                overflow-y: auto;
-            }
-
-            nav.active {
-                display: flex;
-            }
-
             nav a {
-                display: block;
-                margin: 0 0 15px 0;
-                padding: 10px 0;
-                width: 100%;
-            }
-
-            .language-switcher {
-                margin-top: 20px;
-                padding-top: 20px;
-                border-top: 1px solid var(--border-color);
-            }
-
-            /* Overlay for when menu is open */
-            body.menu-open::before {
-                content: '';
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0,0,0,0.5);
-                z-index: 999;
+                display: inline-block;
+                margin-bottom: 0.5rem;
             }
         }
 
@@ -315,9 +258,6 @@
 <body>
     <div class="container">
         <header>
-            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-                ☰
-            </button>
             <div class="title-bar">
                 <a href="#about-me" class="nav-link logo-link" data-page="about-me" style="border: none; display: inline-block; line-height: 0;">
                     <img src="logo-guia.svg" alt="Logo" style="height: 4.5rem; display: block;">
@@ -328,7 +268,7 @@
                     <a href="index-de.html">DE</a>
                 </div>
             </div>
-            <nav id="navMenu">
+            <nav>
                 <a href="#about-me" class="nav-link active" data-page="about-me">About me</a>
                 <a href="#newsletter" class="nav-link" data-page="newsletter">Newsletter</a>
                 <a href="#digital-garden" class="nav-link" data-page="digital-garden">Digital Garden</a>
@@ -530,38 +470,6 @@ If you want to talk about knowledge systems, thinking practices, or work togethe
     </div>
 
     <script>
-        // Hamburger Menu Toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const navMenu = document.getElementById('navMenu');
-        const body = document.body;
-
-        if (menuToggle && navMenu) {
-            menuToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                navMenu.classList.toggle('active');
-                body.classList.toggle('menu-open');
-                
-                // Change icon between hamburger and X
-                if (navMenu.classList.contains('active')) {
-                    menuToggle.innerHTML = '✕';
-                } else {
-                    menuToggle.innerHTML = '☰';
-                }
-            });
-
-            // Close menu when clicking outside
-            document.addEventListener('click', function(event) {
-                const isClickInsideMenu = navMenu.contains(event.target);
-                const isClickOnToggle = menuToggle.contains(event.target);
-                
-                if (!isClickInsideMenu && !isClickOnToggle && navMenu.classList.contains('active')) {
-                    navMenu.classList.remove('active');
-                    body.classList.remove('menu-open');
-                    menuToggle.innerHTML = '☰';
-                }
-            });
-        }
-
         // Simple navigation
         const navLinks = document.querySelectorAll('.nav-link');
         const pages = document.querySelectorAll('.page');
@@ -569,28 +477,21 @@ If you want to talk about knowledge systems, thinking practices, or work togethe
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                
-                // Close mobile menu if open
-                if (navMenu && navMenu.classList.contains('active')) {
-                    navMenu.classList.remove('active');
-                    body.classList.remove('menu-open');
-                    if (menuToggle) menuToggle.innerHTML = '☰';
-                }
-                
+
                 // Remove active class from all links and pages
                 navLinks.forEach(l => l.classList.remove('active'));
                 pages.forEach(p => p.classList.remove('active'));
-                
+
                 // Add active class to clicked link
                 link.classList.add('active');
-                
+
                 // Show corresponding page
                 const pageId = link.dataset.page + '-page';
                 document.getElementById(pageId).classList.add('active');
-                
+
                 // Update URL hash
                 window.location.hash = link.dataset.page;
-                
+
                 // Scroll to top
                 window.scrollTo(0, 0);
             });
@@ -600,9 +501,9 @@ If you want to talk about knowledge systems, thinking practices, or work togethe
         window.addEventListener('load', () => {
             const hash = window.location.hash.substring(1);
             if (hash) {
-                const targetLink = document.querySelector(`.nav-link[data-page="${hash}"]`);
-                if (targetLink) {
-                    targetLink.click();
+                const link = document.querySelector(`[data-page="${hash}"]`);
+                if (link) {
+                    link.click();
                 }
             }
         });
