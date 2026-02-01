@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +7,15 @@
     <style>
         @font-face {
             font-family: 'Klarheit Kurrent';
-            src: url('assets/fonts/ESKlarheitKurrent-Light.woff2') format('woff2'),
-                 url('assets/fonts/ESKlarheitKurrent-Light.woff') format('woff');
+            src: url('../../assets/fonts/ESKlarheitKurrent-Light.woff2') format('woff2'),
+                 url('../../assets/fonts/ESKlarheitKurrent-Light.woff') format('woff');
             font-weight: 300;
             font-style: normal;
         }
         @font-face {
             font-family: 'Larsseit';
-            src: url('assets/fonts/Larsseit-Light.woff2') format('woff2'),
-                 url('assets/fonts/Larsseit-Light.woff') format('woff');
+            src: url('../../assets/fonts/Larsseit-Light.woff2') format('woff2'),
+                 url('../../assets/fonts/Larsseit-Light.woff') format('woff');
             font-weight: 300;
             font-style: normal;
         }
@@ -127,45 +127,38 @@
 <body>
     <div class="container">
         <header>
-            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
             <div class="title-bar">
-                <a href="/" class="logo-link" style="border: none; display: inline-block; line-height: 0;">
-                    <img src="assets/images/logo-guia.svg" alt="Logo" style="height: 4.5rem; display: block;">
-                </a>
+                <a href="/es/" class="logo-link" style="border: none; display: inline-block; line-height: 0;"><img src="../../assets/images/logo-guia.svg" alt="Logo" style="height: 4.5rem; display: block;"></a>
                 <div class="language-switcher">
-                    <a href="/" class="active">EN</a>
-                    <a href="/es/">ES</a>
-                    <a href="/de/">DE</a>
+                    <a href="/en/digitalgarden/">EN</a>
+                    <a href="/es/digitalgarden/" class="active">ES</a>
+                    <a href="/de/digitalgarden/">DE</a>
                 </div>
             </div>
+            <button class="menu-toggle" id="menuToggle">☰</button>
             <nav id="navMenu">
-                <a href="/" class="active">Hello</a>
-                <a href="/en/dearnotes/">Dear Notes</a>
-                <a href="/en/digitalgarden/">Digital Garden</a>
-                <a href="/en/offerings/">Offerings</a>
-                <a href="/en/about/">About</a>
-                <a href="/en/newsletter-contact/">Newsletter &amp; Contact</a>
+                <a href="/es/">Hola</a>
+                <a href="/es/dearnotes/">Dear Notes</a>
+                <a href="/es/digitalgarden/" class="active">Jardín digital</a>
+                <a href="/es/offerings/">Acompañamiento</a>
+                <a href="/es/about/">Sobre mí</a>
+                <a href="/es/newsletter-contact/">Newsletter &amp; Contacto</a>
             </nav>
         </header>
         <main>
             <article>
-                <h1>Hello! I'm Guía. I translate, write and teach about note-taking and thinking as craft and process, not systems to perfect.</h1>
-
-                <div class="home-image">
-                    <img src="assets/images/writing-journal-blurred.jpg" alt="Writing journal">
-                </div>
-
-                <p>I founded <a href="/en/dearnotes/">Dear Notes</a>, an independent project exploring knowledge management from many angles: as a strategic tool for companies, as a thinking practice, and as a relationship with what we (don't) know.</p>
-
-                <p>Through writing, workshops, and one-on-one work, I help people and organizations build sustainable ways to capture, organize, and use what they learn. Not as productivity theater, but as a practice you can sustain.</p>
-
-                <p>Browse the <a href="/en/digitalgarden/">Digital Garden</a>—a living collection of notes and ideas that grow over time. Explore my <a href="/en/offerings/">offerings</a>, or <a href="/en/newsletter-contact/">subscribe to the newsletter</a> (sent monthly at the max, no spam!).</p>
-
-                <p>Happy to have you here on my corner of the internet!</p>
+                <h1>Jardín Digital</h1>
+                <p>Estoy testeando una cosa. Este es tu jardín digital — un espacio para cultivar ideas, notas interconectadas y pensamientos en evolución.</p>
+                <h2>Notas Recientes</h2>
+                <p><a href="#">Sobre Tipografía y Lectura</a> — Reflexiones sobre cómo el diseño afecta la comprensión.</p>
+                <p><a href="#">Construyendo un Sitio Web Simple</a> — Mi viaje creando este sitio.</p>
+                <p><a href="#">El Valor de la Lentitud</a> — Por qué tomarse tiempo importa en un mundo rápido.</p>
+                <h2>Temas</h2>
+                <p>Organiza tus notas por temas, proyectos, o la estructura que tenga sentido para ti.</p>
             </article>
         </main>
         <footer>
-            <p>&copy; 2025 Guia Carmona</p>
+            <p>© 2025 Guia Carmona</p>
         </footer>
     </div>
     <script>
