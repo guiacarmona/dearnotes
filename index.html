@@ -351,9 +351,18 @@
         }
 
         .photo-credit {
-            font-size: 0.8rem;
-            color: #666;
-            margin-top: 0.4rem;
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 0.3rem;
+        }
+
+        .photo-credit a {
+            color: #999;
+            text-decoration: underline;
+        }
+
+        .photo-credit a:hover {
+            color: var(--mustard);
         }
     </style>
 </head>
@@ -443,8 +452,7 @@
                         <div class="about-text">
                             <figure class="about-portrait">
                                 <img src="guia-portrait.jpg" alt="Guía Carmona">
-                                <figcaption>Guía Carmona</figcaption>
-                                <figcaption class="photo-credit">Foto: Marie Pikatz</figcaption>
+                                <figcaption class="photo-credit">Guía Carmona │ Foto: <a href="https://mariepie-fotografie.de/" target="_blank" rel="noopener">Marie Piekatz</a></figcaption>
                             </figure>
 
                             <h2>A Bit of Background</h2>
