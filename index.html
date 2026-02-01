@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dear Notes</title>
+    <title>Guia Carmona · Dear Notes</title>
     <style>
         @font-face {
             font-family: 'Klarheit Kurrent';
@@ -323,6 +323,16 @@
                 width: 100%;
                 max-width: 400px;
             }
+
+            .home-layout {
+                flex-direction: column;
+            }
+
+            .home-image {
+                flex: none;
+                width: 100%;
+                max-width: 300px;
+            }
         }
 
         .page {
@@ -362,6 +372,27 @@
             border-bottom: 1px solid var(--mustard);
         }
 
+        .home-layout {
+            display: flex;
+            gap: 2.5rem;
+            align-items: flex-start;
+        }
+
+        .home-text {
+            flex: 1;
+        }
+
+        .home-image {
+            flex: 0 0 260px;
+            padding-top: 0.5rem;
+        }
+
+        .home-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
         .photo-credit a:hover {
             color: var(--mustard);
         }
@@ -399,13 +430,20 @@
                 <article>
                     <h1>Hello! I'm Guia. I translate, write, and teach to understand what fascinates me.</h1>
 
-                    <p>Curiosity has been my greatest ally since childhood, and making space for it has allowed me to explore many paths.</p>
+                    <div class="home-layout">
+                        <div class="home-text">
+                            <p>Curiosity has been my greatest ally since childhood, and making space for it has allowed me to explore many paths.</p>
 
-                    <p>I created <a href="#dear-notes" class="nav-link" data-page="dear-notes">Dear Notes</a>, an independent project exploring knowledge management from many angles: as a strategic tool for companies, as a thinking practice, and as a relationship with what we (don't) know.</p>
+                            <p>I created <a href="#dear-notes" class="nav-link" data-page="dear-notes">Dear Notes</a>, an independent project exploring knowledge management from many angles: as a strategic tool for companies, as a thinking practice, and as a relationship with what we (don't) know.</p>
 
-                    <p>Through writing, workshops, and one-on-one work, I help people and organizations build sustainable ways to capture, organize, and use what they learn; not as productivity theater, but as a practice for living with ideas over time.</p>
+                            <p>Through writing, workshops, and one-on-one work, I help people and organizations build sustainable ways to capture, organize, and use what they learn; not as productivity theater, but as a practice for living with ideas over time.</p>
 
-                    <p>Explore the <a href="#digital-garden" class="nav-link" data-page="digital-garden">Digital Garden</a>, subscribe to the <a href="#newsletter-offerings" class="nav-link" data-page="newsletter-offerings">Newsletter</a>, or learn more <a href="#about-me" class="nav-link" data-page="about-me">about me</a>.</p>
+                            <p>Explore the <a href="#digital-garden" class="nav-link" data-page="digital-garden">Digital Garden</a>, subscribe to the <a href="#newsletter-offerings" class="nav-link" data-page="newsletter-offerings">Newsletter</a>, or learn more <a href="#about-me" class="nav-link" data-page="about-me">about me</a>.</p>
+                        </div>
+                        <div class="home-image">
+                            <img src="assets/images/writing-journal-blurred.jpg" alt="Writing journal">
+                        </div>
+                    </div>
                 </article>
             </div>
 
