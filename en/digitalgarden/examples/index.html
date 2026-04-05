@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia Carmona · Digital Garden</title>
+    <title>Guia Carmona · Digital Gardens: examples and further reading</title>
     <style>
         @font-face {
             font-family: 'Klarheit Kurrent';
-            src: url('../../assets/fonts/ESKlarheitKurrent-Light.woff2') format('woff2'),
-                 url('../../assets/fonts/ESKlarheitKurrent-Light.woff') format('woff');
+            src: url('../../../assets/fonts/ESKlarheitKurrent-Light.woff2') format('woff2'),
+                 url('../../../assets/fonts/ESKlarheitKurrent-Light.woff') format('woff');
             font-weight: 300;
             font-style: normal;
         }
         @font-face {
             font-family: 'Larsseit';
-            src: url('../../assets/fonts/Larsseit-Light.woff2') format('woff2'),
-                 url('../../assets/fonts/Larsseit-Light.woff') format('woff');
+            src: url('../../../assets/fonts/Larsseit-Light.woff2') format('woff2'),
+                 url('../../../assets/fonts/Larsseit-Light.woff') format('woff');
             font-weight: 300;
             font-style: normal;
         }
@@ -83,23 +83,11 @@
             margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color);
             font-size: 0.9rem; color: #666; font-family: 'Larsseit', sans-serif;
         }
-        .about-content { display: flex; gap: 3rem; align-items: flex-start; }
-        .about-text { flex: 1; }
-        .about-image { flex-shrink: 0; width: 300px; }
-        .about-image img { width: 100%; height: auto; border-radius: 5px; }
         .menu-toggle {
             display: none; background: none; border: none; font-size: 28px;
             cursor: pointer; color: #333; padding: 10px; z-index: 1001;
             position: fixed; top: 1rem; right: 1rem;
         }
-        .about-portrait { margin: 2.5rem 0 3rem 0; }
-        .about-portrait img { width: 100%; max-width: 720px; height: auto; display: block; }
-        .photo-credit { font-size: 0.75rem; color: #999; margin-top: 0.3rem; }
-        .photo-credit a { color: #999; text-decoration: none; border-bottom: 1px solid var(--mustard); }
-        .photo-credit a:hover { color: var(--mustard); }
-        .home-image { margin: 1.5rem 0; }
-        .home-image img { width: 100%; height: auto; display: block; }
-        .image img { max-width: 500px; width: 100%; height: auto; }
         @media (max-width: 768px) {
             body { padding: 1rem; font-size: 16px; }
             .title-bar { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
@@ -119,8 +107,6 @@
                 content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
                 background-color: rgba(0,0,0,0.5); z-index: 999;
             }
-            .about-content { flex-direction: column; }
-            .about-image { width: 100%; max-width: 400px; }
         }
     </style>
 </head>
@@ -129,39 +115,47 @@
         <header>
             <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
             <div class="title-bar">
-                <a href="../../" class="logo-link" style="border: none; display: inline-block; line-height: 0;">
-                    <img src="../../assets/images/logo-guia.svg" alt="Logo" style="height: 4.5rem; display: block;">
+                <a href="../../../" class="logo-link" style="border: none; display: inline-block; line-height: 0;">
+                    <img src="../../../assets/images/logo-guia.svg" alt="Logo" style="height: 4.5rem; display: block;">
                 </a>
                 <div class="language-switcher">
-                    <a href="../../en/digitalgarden/" class="active">EN</a>
-                    <a href="../../es/digitalgarden/">ES</a>
-                    <a href="../../de/digitalgarden/">DE</a>
+                    <a href="../../../en/digitalgarden/examples/" class="active">EN</a>
+                    <a href="../../../es/digitalgarden/">ES</a>
+                    <a href="../../../de/digitalgarden/">DE</a>
                 </div>
             </div>
             <nav id="navMenu">
-                <a href="../../">Hello</a>
-                <a href="../../en/dearnotes/">Dear Notes</a>
-                <a href="../../en/digitalgarden/" class="active">Digital Garden</a>
-                <a href="../../en/offerings/">Offerings</a>
-                <a href="../../en/about/">About</a>
-                <a href="../../en/newsletter-contact/">Newsletter &amp; Contact</a>
+                <a href="../../../">Hello</a>
+                <a href="../../../en/dearnotes/">Dear Notes</a>
+                <a href="../../../en/digitalgarden/" class="active">Digital Garden</a>
+                <a href="../../../en/offerings/">Offerings</a>
+                <a href="../../../en/about/">About</a>
+                <a href="../../../en/newsletter-contact/">Newsletter &amp; Contact</a>
             </nav>
         </header>
         <main>
             <article>
-                <p>A digital garden is a metaphor for thinking about writing and knowledge online: a living space, distinct from content that is finished. Like a physical garden, what matters is constant care. Planting ideas, watering them with reading, pruning them through revision.</p>
+                <h1>Digital Gardens: examples and further reading</h1>
 
-                <p>In a museum, finished works prevail; in a library, order and archive; on a map, paths already drawn. A digital garden follows a different logic: a terrain where ideas grow, intersect, and take shape at their own pace.</p>
+                <p>A digital garden is a personal website where you publish notes, ideas, and essays that are in progress, living documents that grow as your thinking evolves. Maggie Appleton, in her wonderful essay on this (A Brief History &amp; Ethos of the Digital Garden), describes it as organized by topography rather than timelines: instead of a blog's reverse-chronological feed of finished posts, a garden is a network of connected ideas at different stages of development. You wander through it; things link to each other.</p>
 
-                <p>A particular way of relating to knowledge: intimate and public at once. Not everything blooms here, and I've come to think that imperfection is where its real value lies.</p>
+                <p>The metaphor matters because gardens reward tending over time. Some ideas bloom eventually, some sit quietly for months before they suddenly connect with something else. There is no pressure.</p>
 
-                <p>How it differs from a blog: blogs are organized in linear, dated entries; a garden grows non-chronologically and branches outward. Where a blog is a public diary, a garden is a personal laboratory in progress. I've found that distinction freeing.</p>
+                <p>The other thing Maggie points out, which I find important, is what a garden is a response to. We've been conditioned by social media to present ourselves like polished, performative brands. A garden is the opposite: a space you own that shows the mess and the process.</p>
 
-                <p>How to read this garden: there is no prescribed path. Start anywhere and let the links guide you. Some pages are developed, others are barely sketches. Come back to something later and you might find it changed, or connected somewhere you didn't expect.</p>
+                <h3>Some gardens I like</h3>
 
-                <p><a href="examples/">This note</a> gathers some digital gardens I keep coming back to. Happy exploring!</p>
-
-                <p style="text-align: center;">✿✤❀</p>
+                <ul>
+                    <li><a href="https://www.mentalnodes.com/a-gardening-guide-for-your-mind" target="_blank" rel="noopener">Mental Nodes</a> from Anne Laure Le Cunff — clean, simple, easy to browse.</li>
+                    <li><a href="https://unsulee.com/Digital+Garden/Digital+Garden" target="_blank" rel="noopener">Unsulee</a> — built on Obsidian Publish. Describes itself as "a glimpse into my rabbit holes," which is pretty much the whole idea.</li>
+                    <li><a href="https://ebony-position-0e8.notion.site/2c31705612b880f5b24ec0065f081409?v=2c31705612b88135b875000c8b2ad20c" target="_blank" rel="noopener">Podge Thomas</a> — built in Notion, another proof that the tool doesn't matter.</li>
+                    <li><a href="https://notes.davidralphlewis.co.uk/" target="_blank" rel="noopener">David Ralph Lewis</a> — 600+ notes.</li>
+                    <li><a href="https://www.mtsolitary.com/" target="_blank" rel="noopener">Mt. Solitary</a> and <a href="https://commonplace.doubleloop.net/" target="_blank" rel="noopener">Doubleloop</a> — two very different vibes, both worth wandering through.</li>
+                    <li><a href="https://maggieappleton.com/garden" target="_blank" rel="noopener">Maggie Appleton's garden</a> — wonderful, but probably not the right benchmark if you're just starting.</li>
+                    <li><a href="https://notes.andymatuschak.org/About_these_notes" target="_blank" rel="noopener">Andy Matuschak</a> — more academic and research-focused, but the way notes link to each other is worth seeing.</li>
+                    <li><a href="https://notes.azlen.me/g3tibyfv/" target="_blank" rel="noopener">Azlen</a> — calls them "quick ideas."</li>
+                    <li>And my favorite, the one that makes me "jealous" and why I want to do this: <a href="https://www.ricardaskiel.de/notizen/" target="_blank" rel="noopener">Ricarda Kiel's Notizen</a>, in German. Ricarda describes part of the garden as a glossary. <a href="../">Mine</a>, empty, for now, but I'm eager to fill it with seeds and plants alongside you!</li>
+                </ul>
             </article>
         </main>
         <footer>
