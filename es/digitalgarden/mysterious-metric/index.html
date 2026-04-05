@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia Carmona · Digital Gardens: examples and further reading</title>
+    <title>Guia Carmona · La métrica misteriosa</title>
     <style>
         @font-face {
             font-family: 'Klarheit Kurrent';
@@ -39,10 +39,6 @@
             display: flex; justify-content: space-between; align-items: center;
             margin-bottom: 0.3rem; flex-wrap: wrap; gap: 0.5rem;
         }
-        .site-title {
-            font-family: 'Klarheit Kurrent', serif; font-size: 1.2rem;
-            font-weight: 300; letter-spacing: 0; margin: 0;
-        }
         .language-switcher { font-family: 'Larsseit', sans-serif; font-size: 14px; white-space: nowrap; }
         .language-switcher a {
             color: var(--text-color); text-decoration: none; margin-left: 0.8rem;
@@ -66,19 +62,12 @@
             font-family: 'Klarheit Kurrent', serif; font-size: 1.8rem; font-weight: 300;
             letter-spacing: 0; margin-top: 2.5rem; margin-bottom: 1rem;
         }
-        h3 {
-            font-family: 'Larsseit', sans-serif; font-size: 1.3rem; font-weight: 300;
-            letter-spacing: 0.02em; margin-top: 2rem; margin-bottom: 0.8rem;
-        }
         p { margin-bottom: 1.4rem; }
         a { color: var(--link-color); text-decoration: none; border-bottom: 1px solid var(--link-color); transition: border-color 0.2s; }
         a:hover { border-bottom-color: transparent; }
-        code { font-family: 'Larsseit', monospace; background: #f5f5f5; padding: 0.2rem 0.4rem; border-radius: 3px; font-size: 0.9em; }
-        pre { font-family: 'Larsseit', monospace; background: #f5f5f5; padding: 1rem; border-radius: 5px; overflow-x: auto; margin-bottom: 1.4rem; }
-        pre code { background: none; padding: 0; }
+        em { font-style: italic; }
         ul, ol { margin-left: 1.5rem; margin-bottom: 1.4rem; }
         li { margin-bottom: 0.5rem; }
-        blockquote { border-left: 3px solid var(--border-color); padding-left: 1.5rem; margin: 2rem 0; font-style: italic; color: #666; }
         footer {
             margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color);
             font-size: 0.9rem; color: #666; font-family: 'Larsseit', sans-serif;
@@ -94,7 +83,6 @@
             .title-bar .logo-link img { height: 5.5rem; }
             .language-switcher { margin: 0; padding: 0; border: none; }
             h1 { font-size: 2rem; }
-            h2 { font-size: 1.5rem; }
             .menu-toggle { display: block; }
             nav {
                 display: none; position: fixed; top: 0; right: 0; width: 280px; height: 100vh;
@@ -113,50 +101,41 @@
 <body>
     <div class="container">
         <header>
-            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
             <div class="title-bar">
                 <a href="../../../" class="logo-link" style="border: none; display: inline-block; line-height: 0;">
                     <img src="../../../assets/images/logo-guia.svg" alt="Logo" style="height: 4.5rem; display: block;">
                 </a>
                 <div class="language-switcher">
-                    <a href="../../../en/digitalgarden/examples/" class="active">EN</a>
-                    <a href="../../../es/digitalgarden/examples/">ES</a>
-                    <a href="../../../de/digitalgarden/examples/">DE</a>
+                    <a href="../../../en/digitalgarden/mysterious-metric/">EN</a>
+                    <a href="../../../es/digitalgarden/mysterious-metric/" class="active">ES</a>
+                    <a href="../../../de/digitalgarden/mysterious-metric/">DE</a>
                 </div>
             </div>
             <nav id="navMenu">
-                <a href="../../../">Hello</a>
-                <a href="../../../en/dearnotes/">Dear Notes</a>
-                <a href="../../../en/digitalgarden/" class="active">Digital Garden</a>
-                <a href="../../../en/offerings/">Offerings</a>
-                <a href="../../../en/about/">About</a>
-                <a href="../../../en/newsletter-contact/">Contact</a>
+                <a href="../../../es/">Hola</a>
+                <a href="../../../es/dearnotes/">Dear Notes</a>
+                <a href="../../../es/digitalgarden/" class="active">Jardín digital</a>
+                <a href="../../../es/offerings/">Acompañamiento</a>
+                <a href="../../../es/about/">Sobre mí</a>
+                <a href="../../../es/newsletter-contact/">Contacto</a>
             </nav>
         </header>
         <main>
             <article>
-                <h1>Digital Gardens: examples and further reading</h1>
+                <h1>La métrica misteriosa</h1>
 
-                <p>A digital garden is a personal website where you publish notes, ideas, and essays that are in progress, living documents that grow as your thinking evolves. Maggie Appleton, in her wonderful <a href="https://maggieappleton.com/garden-history" target="_blank" rel="noopener">essay</a> on this (A Brief History &amp; Ethos of the Digital Garden), describes it as organized by topography rather than timelines: instead of a blog's reverse-chronological feed of finished posts, a garden is a network of connected ideas at different stages of development. You wander through it; things link to each other.</p>
+                <p>Escuché la entrevista de Zane Lowe con <a href="https://www.youtube.com/watch?v=YSUvyV1l554&t=1s" target="_blank" rel="noopener">Lucy Dacus</a> en la que le pregunta: "¿Cómo sabes cuándo una canción está terminada?" La respuesta de Lucy es que cada canción tiene que funcionar según una <em>métrica misteriosa</em>. No porque no haya nada más que añadir, sino porque cualquier cambio posterior no alteraría lo esencial.</p>
 
-                <p>The metaphor matters because gardens reward tending over time. Some ideas bloom eventually, some sit quietly for months before they suddenly connect with something else. There is no pressure.</p>
+                <p>Es un criterio difícil de explicar, pero reconocible cuando llega. Recuerda una canción en la que, después de ir y venir durante mucho tiempo, fue añadir un arpa lo que por fin la llevó ahí.</p>
 
-                <p>The other thing Maggie points out, which I find important, is what a garden is a response to. We've been conditioned by social media to present ourselves like polished, performative brands. A garden is the opposite: a space you own that shows the mess and the process.</p>
+                <p>Me hizo pensar en nuestros sistemas de toma de notas. A menudo nos imaginamos un Zettelkasten perfecto: funcional, ordenado, completo, como si hubiera un nivel final al que llegar. Por los mensajes que recibo, la sensación general es que el sistema siempre está inacabado, a años luz del ideal.</p>
 
-                <h3>Some gardens I like</h3>
+                <p>Anne-Laure Le Cunff lo explica en <em>Tiny Experiments</em>: los objetivos lineales tienden a trabajar en nuestra contra. Nos mantienen en la posición de alguien que todavía no ha llegado, alimentando el miedo a quedarse atrás, a no haberlo intentado con suficiente empeño, a fallar.</p>
 
-                <ul>
-                    <li><a href="https://www.mentalnodes.com/a-gardening-guide-for-your-mind" target="_blank" rel="noopener">Mental Nodes</a> from Anne Laure Le Cunff — clean, simple, easy to browse.</li>
-                    <li><a href="https://commonplace.doubleloop.net/" target="_blank" rel="noopener">Doubleloop</a> — I like the playful design.</li>
-                    <li><a href="https://ebony-position-0e8.notion.site/2c31705612b880f5b24ec0065f081409?v=2c31705612b88135b875000c8b2ad20c" target="_blank" rel="noopener">Podge Thomas</a> — built in Notion, another proof that the tool doesn't matter.</li>
-                    <li><a href="https://notes.davidralphlewis.co.uk/" target="_blank" rel="noopener">David Ralph Lewis</a> — 600+ notes.</li>
-                    <li><a href="https://www.mtsolitary.com/" target="_blank" rel="noopener">Mt. Solitary</a> — built on Obsidian Publish, worth wandering through, +600 notes!</li>
-                    <li><a href="https://unsulee.com/Digital+Garden/Digital+Garden" target="_blank" rel="noopener">Unsulee</a> — also Obsidian Publish. Describes itself as "a glimpse into my rabbit holes," which is pretty much the whole idea.</li>
-                    <li><a href="https://maggieappleton.com/garden" target="_blank" rel="noopener">Maggie Appleton's garden</a> — wonderful, but probably not the right benchmark if you're just starting.</li>
-                    <li><a href="https://notes.andymatuschak.org/About_these_notes" target="_blank" rel="noopener">Andy Matuschak</a> — more academic and research-focused, but the way notes link to each other is worth seeing.</li>
-                    <li><a href="https://notes.azlen.me/g3tibyfv/" target="_blank" rel="noopener">Azlen</a> — calls them "quick ideas."</li>
-                    <li>And my favorite, a big inspiration for wanting to do this: <a href="https://www.ricardaskiel.de/notizen/" target="_blank" rel="noopener">Ricardas Kiel's Notizen</a>, in German. Ricardas also describes part of the garden as a glossary, that resonates with me as a translator!</li>
-                </ul>
+                <p>¿Y si, en lugar de medirnos con ese horizonte lejano y perfecto, buscáramos nuestras propias métricas misteriosas? Esa sensación de que una nota, una conexión, ya hace lo que tiene que hacer. De que, aunque el sistema no esté terminado, está en uso, vivo, cumpliendo su función. De que nos ayuda a escribir con más claridad, a divertirnos más, o a encontrar una cita en el momento justo.</p>
+
+                <p>Construye algo que realmente funcione para ti. Algo útil, algo que te ayude a leer, escribir, pensar. No un sistema que mantienes por obligación, sino uno al que quieres volver, cuidar y hacer crecer.</p>
             </article>
         </main>
         <footer>
