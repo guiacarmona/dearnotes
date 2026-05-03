@@ -120,6 +120,8 @@
             transition: opacity 0.2s;
         }
         .btn-inscripcion:hover { opacity: 0.85; border-bottom: none; }
+        .toggle-section summary { font-size: 1.1rem; padding: 1.2rem 0; }
+        .toggle-section .faq-answer { padding-bottom: 1.2rem; }
         @media (max-width: 768px) {
             body { padding: 1rem; font-size: 16px; }
             .title-bar { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
@@ -209,7 +211,7 @@
 
                 <p>Las sesiones en vivo tienen horarios variados para adaptarse a diferentes rutinas. Los horarios concretos los encontrarás aquí.</p>
 
-                <div class="faq-group">
+                <div class="faq-group toggle-section">
                     <details>
                         <summary>Semana a semana</summary>
                         <div class="faq-answer">
@@ -236,8 +238,6 @@
                         </div>
                     </details>
                 </div>
-
-                <hr>
 
                 <h3>Para quién es este curso</h3>
                 <p>Para personas con ideas en proceso que quieren un espacio propio donde publicarlas. No necesitas saber programar. Necesitas haber usado alguna herramienta de IA como Claude o ChatGPT, tener ganas de escribir en público, y querer un espacio que sea verdaderamente tuyo.</p>
