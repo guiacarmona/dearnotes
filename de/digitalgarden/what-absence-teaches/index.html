@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia Carmona · Dear Notes</title>
+    <title>Guia Carmona · Was Abwesenheit lehrt</title>
     <style>
         @font-face {
             font-family: 'Klarheit Kurrent';
-            src: url('../../assets/fonts/ESKlarheitKurrent-Light.woff2') format('woff2'),
-                 url('../../assets/fonts/ESKlarheitKurrent-Light.woff') format('woff');
+            src: url('../../../assets/fonts/ESKlarheitKurrent-Light.woff2') format('woff2'),
+                 url('../../../assets/fonts/ESKlarheitKurrent-Light.woff') format('woff');
             font-weight: 300;
             font-style: normal;
         }
         @font-face {
             font-family: 'Larsseit';
-            src: url('../../assets/fonts/Larsseit-Light.woff2') format('woff2'),
-                 url('../../assets/fonts/Larsseit-Light.woff') format('woff');
+            src: url('../../../assets/fonts/Larsseit-Light.woff2') format('woff2'),
+                 url('../../../assets/fonts/Larsseit-Light.woff') format('woff');
             font-weight: 300;
             font-style: normal;
         }
@@ -38,10 +38,6 @@
         .title-bar {
             display: flex; justify-content: space-between; align-items: center;
             margin-bottom: 0.3rem; flex-wrap: wrap; gap: 0.5rem;
-        }
-        .site-title {
-            font-family: 'Klarheit Kurrent', serif; font-size: 1.2rem;
-            font-weight: 300; letter-spacing: 0; margin: 0;
         }
         .language-switcher { font-family: 'Larsseit', sans-serif; font-size: 14px; white-space: nowrap; }
         .language-switcher a {
@@ -66,47 +62,27 @@
             font-family: 'Klarheit Kurrent', serif; font-size: 1.8rem; font-weight: 300;
             letter-spacing: 0; margin-top: 2.5rem; margin-bottom: 1rem;
         }
-        h3 {
-            font-family: 'Larsseit', sans-serif; font-size: 1.3rem; font-weight: 300;
-            letter-spacing: 0.02em; margin-top: 2rem; margin-bottom: 0.8rem;
-        }
         p { margin-bottom: 1.4rem; }
         a { color: var(--link-color); text-decoration: none; border-bottom: 1px solid var(--link-color); transition: border-color 0.2s; }
         a:hover { border-bottom-color: transparent; }
-        code { font-family: 'Larsseit', monospace; background: #f5f5f5; padding: 0.2rem 0.4rem; border-radius: 3px; font-size: 0.9em; }
-        pre { font-family: 'Larsseit', monospace; background: #f5f5f5; padding: 1rem; border-radius: 5px; overflow-x: auto; margin-bottom: 1.4rem; }
-        pre code { background: none; padding: 0; }
+        em { font-style: italic; }
         ul, ol { margin-left: 1.5rem; margin-bottom: 1.4rem; }
         li { margin-bottom: 0.5rem; }
-        blockquote { border-left: 3px solid var(--border-color); padding-left: 1.5rem; margin: 2rem 0; font-style: italic; color: #666; }
         footer {
             margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color);
             font-size: 0.9rem; color: #666; font-family: 'Larsseit', sans-serif;
         }
-        .about-content { display: flex; gap: 3rem; align-items: flex-start; }
-        .about-text { flex: 1; }
-        .about-image { flex-shrink: 0; width: 300px; }
-        .about-image img { width: 100%; height: auto; border-radius: 5px; }
         .menu-toggle {
             display: none; background: none; border: none; font-size: 28px;
             cursor: pointer; color: #333; padding: 10px; z-index: 1001;
             position: fixed; top: 1rem; right: 1rem;
         }
-        .about-portrait { margin: 2.5rem 0 3rem 0; }
-        .about-portrait img { width: 100%; max-width: 720px; height: auto; display: block; }
-        .photo-credit { font-size: 0.75rem; color: #999; margin-top: 0.3rem; }
-        .photo-credit a { color: #999; text-decoration: none; border-bottom: 1px solid var(--mustard); }
-        .photo-credit a:hover { color: var(--mustard); }
-        .home-image { margin: 1.5rem 0; }
-        .home-image img { width: 100%; height: auto; display: block; }
-        .image img { max-width: 500px; width: 100%; height: auto; }
         @media (max-width: 768px) {
             body { padding: 1rem; font-size: 16px; }
             .title-bar { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
             .title-bar .logo-link img { height: 5.5rem; }
             .language-switcher { margin: 0; padding: 0; border: none; }
             h1 { font-size: 2rem; }
-            h2 { font-size: 1.5rem; }
             .menu-toggle { display: block; }
             nav {
                 display: none; position: fixed; top: 0; right: 0; width: 280px; height: 100vh;
@@ -119,64 +95,57 @@
                 content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
                 background-color: rgba(0,0,0,0.5); z-index: 999;
             }
-            .about-content { flex-direction: column; }
-            .about-image { width: 100%; max-width: 400px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen">☰</button>
             <div class="title-bar">
-                <a href="../../es/" class="logo-link" style="border: none; display: inline-block; line-height: 0;"><img src="../../assets/images/logo-guia.svg" alt="Logo" style="height: 4.5rem; display: block;"></a>
+                <a href="../../../" class="logo-link" style="border: none; display: inline-block; line-height: 0;">
+                    <img src="../../../assets/images/logo-guia.svg" alt="Logo" style="height: 4.5rem; display: block;">
+                </a>
                 <div class="language-switcher">
-                    <a href="../../en/digitalgarden/">EN</a>
-                    <a href="../../es/digitalgarden/" class="active">ES</a>
-                    <a href="../../de/digitalgarden/">DE</a>
+                    <a href="../../../en/digitalgarden/what-absence-teaches/">EN</a>
+                    <a href="../../../es/digitalgarden/what-absence-teaches/">ES</a>
+                    <a href="../../../de/digitalgarden/what-absence-teaches/" class="active">DE</a>
                 </div>
             </div>
-            <button class="menu-toggle" id="menuToggle">☰</button>
             <nav id="navMenu">
-                <a href="../../es/">Hola</a>
-                <a href="../../es/dearnotes/">Dear Notes</a>
-                <a href="../../es/digitalgarden/" class="active">Jardín digital</a>
-                <a href="../../es/offerings/">Acompañamiento</a>
-                <a href="../../es/about/">Sobre mí</a>
-                <a href="../../es/newsletter-contact/">Contacto</a>
+                <a href="../../../de/">Hallo</a>
+                <a href="../../../de/dearnotes/">Dear Notes</a>
+                <a href="../../../de/digitalgarden/" class="active">Digitaler Garten</a>
+                <a href="../../../de/offerings/">Zusammenarbeit</a>
+                <a href="../../../de/about/">Über mich</a>
+                <a href="../../../de/newsletter-contact/">Kontakt</a>
             </nav>
         </header>
         <main>
             <article>
-                <p>El jardín digital es una metáfora para pensar la escritura y el conocimiento en línea: un espacio vivo y en transformación, distinto del contenido cerrado o definitivo. Al igual que en un jardín físico, aquí importa el cuidado constante: sembrar ideas, regarlas con lecturas, podarlas con revisiones y aceptar que crezcan de forma desigual y a su propio ritmo. En un museo predominan las obras acabadas; en una biblioteca, el orden y el archivo; en un mapa, los caminos ya trazados. Un jardín digital responde a otra lógica: es proceso más que resultado, un terreno vivo donde las ideas crecen, se cruzan y cambian de forma.</p>
+                <h1>Was Abwesenheit lehrt</h1>
 
-                <p>❀ Una forma de relación con el conocimiento: íntima y pública a la vez. Como en todo jardín, no todo florece, pero en esa imperfección está su valor.</p>
+                <p>Für Autorin Elif Shafak war es Walter Benjamin, der ihr eine andere Art eröffnete, eine Stadt zu lesen. Nicht nur ihre Denkmäler und Straßen, sondern ihre Ruinen, ihre Überreste, das Verlorene, das irgendwie noch da ist, durch seine Abwesenheit. So spricht sie über Istanbul: eine Stadt, die nicht nur aus Geschichte besteht, sondern auch aus Vergessen. Eine Stadt, die verlangt, dass man auf das achtet, was nicht da ist.</p>
 
-                <p>✤ Diferencias con un blog: los blogs están organizados en entradas lineales y fechadas; aquí el crecimiento es no cronológico y ramificado. Mientras el blog funciona como un diario público, el jardín es un laboratorio personal en proceso.</p>
+                <p>Sie verbindet das mit ihrer eigenen Biografie. „Ich habe eine sehr eigentümliche Beziehung zur französischen Sprache und zu Frankreich, eine Beziehung, die durch ihre Abwesenheit in meinem Leben geprägt ist", sagt sie. Die Sprache war einmal in ihren Händen. „Wie Sand zwischen den Fingern. Sie ist einfach weggerutscht." Und trotzdem hat sie sie geprägt. Die Sprache, die sie nicht mehr spricht, ist irgendwie noch Teil dessen, was sie als Schriftstellerin ist.</p>
 
-                <p>✿ Cómo leer este jardín: no es un espacio lineal ni cerrado. Puedes empezar por cualquier nota y dejarte guiar por los enlaces. Algunas páginas están más desarrolladas; otras son solo apuntes. Todo forma parte del proceso. Volver a una idea con el tiempo significa encontrarla cambiada, o conectada de otra manera.</p>
+                <p>Das finde ich nützlich, um über Notizen nachzudenken.</p>
 
-                <p><a href="examples/">Esta nota</a> reúne algunos jardines digitales a los que siempre vuelvo. ¡Buena exploración!</p>
+                <p>Wir neigen dazu, Systeme um Anwesenheit herum zu bauen: was wir festgehalten, verknüpft, was wir wieder abrufbar gemacht haben. Den Zettelkasten als Ansammlung. Das zweite Gehirn als Ort, an dem nichts verloren geht. Aber was ist mit den Notizen, die wir nie geschrieben haben? Den Büchern, die wir gelesen haben, ohne sie zu markieren? Den Gedanken, die in der Dusche auftauchten oder in der Bahn, bevor sie sich festigen konnten?</p>
 
-                <div class="home-image">
-                    <img src="../../assets/images/digitalgarden.png" alt="Jardín digital">
-                </div>
+                <p>Vielleicht gehören diese Lücken auch zum Denken.</p>
 
-                <p style="text-align: center;">✿✤❀</p>
+                <p>Nicht alles, was uns prägt, hinterlässt Spuren. Einiges der wichtigsten Lektüre geschieht im Verborgenen. In dem, was wir fast verstanden haben, was wir halb abgelehnt haben, was wir nicht mehr rekonstruieren können und das uns trotzdem verändert hat.</p>
 
-                <p>Todavía no hay un camino fijo por este jardín. ¡Explora como quieras!</p>
+                <p>Benjamin suchte in <em>Das Passagen-Werk</em> genau danach: wie man liest, was eine Stadt über sich selbst vergessen hat. Was sie nicht zum Denkmal erhoben hat.</p>
 
-                <p>Aquí tienes la lista de todas las notas, con las más recientes arriba:</p>
+                <p>Eine Notizpraxis könnte etwas Ähnliches tun. Nicht nur aufschreiben, was klar angekommen ist. Sondern aufmerksam bleiben für das, was sich noch nicht geformt hat, für die Frage, die man noch nicht in Worte fassen kann, für die Verbindung, die man ahnt, aber nicht benennen kann.</p>
 
-                <ul>
-                    <li><a href="what-absence-teaches/">Lo que enseña la ausencia</a></li>
-                    <li><a href="maria-zambrano-y-sus-metaforas/">María Zambrano y los límites de la razón</a></li>
-                    <li><a href="mysterious-metric/">La métrica misteriosa</a></li>
-                    <li><a href="examples/">Jardines digitales: ejemplos y lecturas recomendadas</a></li>
-                </ul>
+                <p><strong>Quelle:</strong> <a href="https://www.youtube.com/watch?v=tpGCRk6m838&t=737s" target="_blank" rel="noopener">Elif Shafak bei How I Write mit David Perell</a></p>
             </article>
         </main>
         <footer>
-            <p>© 2026 Guia Carmona</p>
+            <p>&copy; 2026 Guia Carmona</p>
         </footer>
     </div>
     <script>
