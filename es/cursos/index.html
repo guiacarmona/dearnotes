@@ -100,6 +100,16 @@
         .home-image { margin: 1.5rem 0; }
         .home-image img { width: 100%; height: auto; display: block; }
         .image img { max-width: 500px; width: 100%; height: auto; }
+        details { border-bottom: 1px solid var(--border-color); }
+        details summary {
+            list-style: none; cursor: pointer; padding: 1rem 0;
+            font-weight: 300; display: flex; justify-content: space-between; align-items: center;
+        }
+        details summary::-webkit-details-marker { display: none; }
+        details summary::after { content: '+'; font-size: 1.3rem; color: var(--mustard); flex-shrink: 0; margin-left: 1rem; }
+        details[open] summary::after { content: '−'; }
+        details .faq-answer { padding-bottom: 1rem; }
+        .faq-group { border-top: 1px solid var(--border-color); margin-bottom: 1.4rem; }
         .btn-inscripcion {
             display: inline-block; margin-top: 1rem;
             background: var(--mustard); color: #fff;
@@ -215,32 +225,44 @@
 
                 <h3>Preguntas frecuentes</h3>
 
-                <p><strong>¿Necesito saber programar?</strong><br>
-                No. Claude Code hace la parte técnica contigo: le describes lo que quieres y te ayuda a construirlo. Si alguna vez has usado Claude o ChatGPT para algo, tienes suficiente base. Lo que sí necesitas es paciencia con la tecnología, porque a veces las cosas no funcionan a la primera y eso también forma parte del proceso.</p>
-
-                <p><strong>¿Qué pasa si no puedo asistir a alguna sesión en vivo?</strong><br>
-                Todas las sesiones se graban y las tendrás disponibles. Puedes seguir el curso a tu ritmo y participar en Slack cuando puedas. Dicho esto, las sesiones en vivo son donde pasan las cosas más interesantes: las preguntas de otras personas, los problemas que no habías anticipado, las conversaciones que no estaban en el programa. Si puedes estar, merece la pena.</p>
-
-                <p><strong>¿Cuánto tiempo necesito cada semana?</strong><br>
-                Entre dos y cuatro horas: la sesión en vivo más el tiempo para trabajar en tu jardín. Algunas semanas serán más intensas que otras, especialmente la segunda, cuando configuramos todo el setup técnico. Si una semana no llegas, no pasa nada. El jardín sigue ahí cuando vuelvas.</p>
-
-                <p><strong>¿Qué necesito para empezar?</strong><br>
-                Un ordenador, una cuenta en GitHub (gratuita), una suscripción a Claude Pro (20€/mes) y ganas de escribir en público. Si todavía no tienes dominio propio, puedes empezar con una dirección gratuita de GitHub Pages y conectar el dominio más adelante.</p>
-
-                <p><strong>¿El jardín que cree será mío?</strong><br>
-                Completamente. Vive en tu propia cuenta de GitHub y en tu propio dominio. No depende de ninguna plataforma, no hay suscripción mensual que mantener, no hay empresa que pueda cerrarte el acceso. Si mañana desaparece cualquier herramienta que hayamos usado para construirlo, el jardín sigue en pie.</p>
-
-                <p><strong>¿Qué pasa después del curso?</strong><br>
-                Te quedas con tu jardín publicado y con una práctica para seguir cultivándolo. Lo más importante que te llevas no es la plataforma, sino el hábito y las herramientas para seguir adelante.</p>
-
-                <p><strong>¿Puedo pagar en dos plazos?</strong><br>
-                Sí. Puedes pagar 297€ de una vez o dos pagos de 150€. Si necesitas otro tipo de acuerdo, escríbeme y lo hablamos.</p>
-
-                <p><strong>¿Hay plazas limitadas?</strong><br>
-                Sí, es un grupo reducido para que haya acompañamiento real. Cuando se llene, se llena.</p>
-
-                <p><strong>¿Para quién no es este curso?</strong><br>
-                Para quien busca una web profesional impoluta desde el día uno. Para quien quiere resultados sin proceso. Para quien no tiene ningún interés en escribir en público. Si no estás seguro de si es para ti, escríbeme y lo vemos juntos.</p>
+                <div class="faq-group">
+                    <details>
+                        <summary>¿Necesito saber programar?</summary>
+                        <p class="faq-answer">No. Claude Code hace la parte técnica contigo: le describes lo que quieres y te ayuda a construirlo. Si alguna vez has usado Claude o ChatGPT para algo, tienes suficiente base. Lo que sí necesitas es paciencia con la tecnología, porque a veces las cosas no funcionan a la primera y eso también forma parte del proceso.</p>
+                    </details>
+                    <details>
+                        <summary>¿Qué pasa si no puedo asistir a alguna sesión en vivo?</summary>
+                        <p class="faq-answer">Todas las sesiones se graban y las tendrás disponibles. Puedes seguir el curso a tu ritmo y participar en Slack cuando puedas. Dicho esto, las sesiones en vivo son donde pasan las cosas más interesantes: las preguntas de otras personas, los problemas que no habías anticipado, las conversaciones que no estaban en el programa. Si puedes estar, merece la pena.</p>
+                    </details>
+                    <details>
+                        <summary>¿Cuánto tiempo necesito cada semana?</summary>
+                        <p class="faq-answer">Entre dos y cuatro horas: la sesión en vivo más el tiempo para trabajar en tu jardín. Algunas semanas serán más intensas que otras, especialmente la segunda, cuando configuramos todo el setup técnico. Si una semana no llegas, no pasa nada. El jardín sigue ahí cuando vuelvas.</p>
+                    </details>
+                    <details>
+                        <summary>¿Qué necesito para empezar?</summary>
+                        <p class="faq-answer">Un ordenador, una cuenta en GitHub (gratuita), una suscripción a Claude Pro (20€/mes) y ganas de escribir en público. Si todavía no tienes dominio propio, puedes empezar con una dirección gratuita de GitHub Pages y conectar el dominio más adelante.</p>
+                    </details>
+                    <details>
+                        <summary>¿El jardín que cree será mío?</summary>
+                        <p class="faq-answer">Completamente. Vive en tu propia cuenta de GitHub y en tu propio dominio. No depende de ninguna plataforma, no hay suscripción mensual que mantener, no hay empresa que pueda cerrarte el acceso. Si mañana desaparece cualquier herramienta que hayamos usado para construirlo, el jardín sigue en pie.</p>
+                    </details>
+                    <details>
+                        <summary>¿Qué pasa después del curso?</summary>
+                        <p class="faq-answer">Te quedas con tu jardín publicado y con una práctica para seguir cultivándolo. Lo más importante que te llevas no es la plataforma, sino el hábito y las herramientas para seguir adelante.</p>
+                    </details>
+                    <details>
+                        <summary>¿Puedo pagar en dos plazos?</summary>
+                        <p class="faq-answer">Sí. Puedes pagar 297€ de una vez o dos pagos de 150€. Si necesitas otro tipo de acuerdo, escríbeme y lo hablamos.</p>
+                    </details>
+                    <details>
+                        <summary>¿Hay plazas limitadas?</summary>
+                        <p class="faq-answer">Sí, es un grupo reducido para que haya acompañamiento real. Cuando se llene, se llena.</p>
+                    </details>
+                    <details>
+                        <summary>¿Para quién no es este curso?</summary>
+                        <p class="faq-answer">Para quien busca una web profesional impoluta desde el día uno. Para quien quiere resultados sin proceso. Para quien no tiene ningún interés en escribir en público. Si no estás seguro de si es para ti, escríbeme y lo vemos juntos.</p>
+                    </details>
+                </div>
 
                 <h3>Precio e inscripción</h3>
                 <p>297€ pago único, o dos pagos de 150€.</p>
