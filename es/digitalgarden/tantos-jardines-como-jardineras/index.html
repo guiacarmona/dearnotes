@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Carmona · Tantos jardines como jardineras</title>
+    <style>
+        @font-face {
+            font-family: 'Klarheit Kurrent';
+            src: url('../../../assets/fonts/ESKlarheitKurrent-Light.woff2') format('woff2'),
+                 url('../../../assets/fonts/ESKlarheitKurrent-Light.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Larsseit';
+            src: url('../../../assets/fonts/Larsseit-Light.woff2') format('woff2'),
+                 url('../../../assets/fonts/Larsseit-Light.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+        }
+        :root {
+            --bg-color: #fefefe;
+            --text-color: #000000;
+            --link-color: #D1B03C;
+            --border-color: #DCD1CD;
+            --secondary-color: #DCD1CD;
+            --mustard: #D1B03C;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Larsseit', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 18px; line-height: 1.7; letter-spacing: 0.02em;
+            color: var(--text-color); background: var(--bg-color); padding: 2rem 4rem;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { margin-bottom: 4rem; padding-bottom: 2rem; }
+        .title-bar {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 0.3rem; flex-wrap: wrap; gap: 0.5rem;
+        }
+        .language-switcher { font-family: 'Larsseit', sans-serif; font-size: 14px; white-space: nowrap; }
+        .language-switcher a {
+            color: var(--text-color); text-decoration: none; margin-left: 0.8rem;
+            border: none; transition: color 0.2s;
+        }
+        .language-switcher a:first-child { margin-left: 0; }
+        .language-switcher a:hover, .language-switcher a.active { color: var(--mustard); }
+        nav { font-family: 'Larsseit', sans-serif; font-size: 16px; margin-top: -0.8rem; }
+        nav a {
+            color: var(--text-color); text-decoration: none; margin-right: 1rem;
+            transition: color 0.2s; border: none;
+        }
+        nav a:hover, nav a.active { color: var(--mustard); }
+        main { max-width: 65ch; }
+        article { width: 100%; }
+        h1 {
+            font-family: 'Klarheit Kurrent', serif; font-size: 2.5rem; font-weight: 300;
+            letter-spacing: 0; line-height: 1.2; margin-bottom: 1.5rem;
+        }
+        h2 {
+            font-family: 'Klarheit Kurrent', serif; font-size: 1.8rem; font-weight: 300;
+            letter-spacing: 0; margin-top: 2.5rem; margin-bottom: 1rem;
+        }
+        p { margin-bottom: 1.4rem; }
+        a { color: var(--link-color); text-decoration: none; border-bottom: 1px solid var(--link-color); transition: border-color 0.2s; }
+        a:hover { border-bottom-color: transparent; }
+        em { font-style: italic; }
+        ul, ol { margin-left: 1.5rem; margin-bottom: 1.4rem; }
+        li { margin-bottom: 0.5rem; }
+        footer {
+            margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color);
+            font-size: 0.9rem; color: #666; font-family: 'Larsseit', sans-serif;
+        }
+        .menu-toggle {
+            display: none; background: none; border: none; font-size: 28px;
+            cursor: pointer; color: #333; padding: 10px; z-index: 1001;
+            position: fixed; top: 1rem; right: 1rem;
+        }
+        @media (max-width: 768px) {
+            body { padding: 1rem; font-size: 16px; }
+            .title-bar { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+            .title-bar .logo-link img { height: 5.5rem; }
+            .language-switcher { margin: 0; padding: 0; border: none; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            .menu-toggle { display: block; }
+            nav {
+                display: none; position: fixed; top: 0; right: 0; width: 280px; height: 100vh;
+                background-color: white; flex-direction: column; padding: 80px 30px 20px 30px;
+                box-shadow: -2px 0 10px rgba(0,0,0,0.1); z-index: 1000; overflow-y: auto;
+            }
+            nav.active { display: flex; }
+            nav a { display: block; margin: 0 0 15px 0; padding: 10px 0; width: 100%; }
+            body.menu-open::before {
+                content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background-color: rgba(0,0,0,0.5); z-index: 999;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+            <div class="title-bar">
+                <a href="../../../" class="logo-link" style="border: none; display: inline-block; line-height: 0;">
+                    <img src="../../../assets/images/logo-guia.svg" alt="Logo" style="height: 4.5rem; display: block;">
+                </a>
+                <div class="language-switcher">
+                    <a href="../../../en/digitalgarden/as-many-gardens-as-gardeners/">EN</a>
+                    <a href="../../../es/digitalgarden/tantos-jardines-como-jardineras/" class="active">ES</a>
+                    <a href="../../../de/digitalgarden/so-viele-gaerten-wie-menschen-die-sie-pflegen/">DE</a>
+                </div>
+            </div>
+            <nav id="navMenu">
+                <a href="../../../es/">Hola</a>
+                <a href="../../../es/dearnotes/">Dear Notes</a>
+                <a href="../../../es/digitalgarden/" class="active">Jardín digital</a>
+                <a href="../../../es/cursos/">Cursos</a>
+                <a href="../../../es/about/">Sobre mí</a>
+                <a href="../../../es/newsletter/">Newsletter</a>
+                <a href="../../../es/newsletter-contact/">Contacto</a>
+            </nav>
+        </header>
+        <main>
+            <article>
+                <h1>Tantos jardines como jardineras</h1>
+
+                <p>Cuando empecé a investigar sobre el concepto de jardín digital, me di cuenta de que la magia está en la variedad de perspectivas que hay. Cada persona que ha escrito o hablado del tema añade su granito de arena, y todas esas voces conviven sin contradecirse.</p>
+
+                <p>Después de leer y escuchar a quienes han pensado el jardín digital, veo tres eras.</p>
+
+                <h2>Los que pensaron en la estructura del jardín</h2>
+
+                <p>La idea empieza en el mundo del diseño web. <a href="http://www.eastgate.com/garden/Enter.html" target="_blank" rel="noopener">Mark Bernstein</a>, en 1998, publicó <em>Hypertext Gardens</em>, donde proponía pensar la web no como una autopista (eficiente, rápida, dirigida) sino como un jardín: un sitio que invita a quedarse, explorar, reflexionar.</p>
+
+                <p>Veinte años después, Maggie Appleton recuperó la idea y la desarrolló en un maravilloso ensayo, <a href="https://maggieappleton.com/garden-history" target="_blank" rel="noopener"><em>A Brief History &amp; Ethos of the Digital Garden</em></a>, donde identifica seis patrones que distinguen un jardín de un blog: topografía sobre cronología, crecimiento continuo, imperfección, juego, diversidad de formatos, y propiedad independiente del dominio. Maggie también ha escrito sobre <a href="https://maggieappleton.com/cozy-web" target="_blank" rel="noopener">el cozy web</a>: los espacios privados de internet (comunidades en Discord, Twitter, Telegram, Patreon y otras) a los que nos hemos replegado en los últimos años. El jardín digital es, en parte, una forma de salir del cozy web sin caer en el ruido del feed.</p>
+
+                <p><a href="https://tomcritchlow.com/2018/10/10/of-gardens-and-wikis/" target="_blank" rel="noopener">Tom Critchlow</a>, en 2018, sumó otra metáfora: las hogueras (<em>campfires</em>). Si las redes son corrientes y los jardines son cultivo, las hogueras son las conversaciones íntimas entre personas que se leen entre sí. Me encanta su forma de ver el jardín como «un blog sin botón de publicar».</p>
+
+                <p><a href="https://joelhooks.com/digital-garden" target="_blank" rel="noopener">Joel Hooks</a> insistió en el proceso. Las ideas crecen lentamente, en abierto, mientras escribes y reescribes. No esperas a tener la respuesta final para publicarla.</p>
+
+                <h2>Las voces de la atención</h2>
+
+                <p><a href="https://hapgood.us/2015/10/17/the-garden-and-the-stream-a-technopastoral/" target="_blank" rel="noopener">Mike Caulfield</a> fue probablemente el primero en formular el concepto moderno. En una conferencia de 2015, articuló la oposición que sigue siendo central: <em>the garden and the stream</em>. La corriente es Twitter, los emails, los chats: información que pasa. El jardín funciona como Wikipedia: información que se relaciona, se profundiza, se mantiene.</p>
+
+                <p><a href="https://nesslabs.com/mind-garden" target="_blank" rel="noopener">Anne-Laure Le Cunff</a> lo conecta con el cultivo de la curiosidad. Para ella, el jardín digital es un espacio mental donde puedes seguir pensando sobre algo durante meses sin la presión de productividad. Es coherente con su crítica a la trampa de medir el aprendizaje como si fuera trabajo.</p>
+
+                <p>Hay varias voces más recientes en YouTube que están extendiendo esto. Una de ellas es <a href="https://www.youtube.com/watch?v=qXgL-yo-zME" target="_blank" rel="noopener">Anna Howard</a>. En su pódcast <em>Wild Geese</em>, habla del jardín como antídoto al <em>doomscrolling</em>: una manera de pasar de consumidora pasiva a creadora activa, de no dejar que las ideas se evaporen.</p>
+
+                <h2>La crítica política</h2>
+
+                <p>Una tercera mirada —la de <a href="https://www.youtube.com/watch?v=CXmagtfnabc" target="_blank" rel="noopener">Alba Lafarga</a>— entiende el jardín digital como gesto de resistencia frente a la degradación de internet y al aplanamiento cultural que producen los algoritmos. Frente a la viralidad, el detenimiento. Recupera a Bernstein y a Caulfield para anclar la idea históricamente, y la conecta con la ética de la inactividad de Byung-Chul Han, el fediverso (las redes sociales descentralizadas como Mastodon o Pixelfed) y el derecho a habitar internet de otra manera. Presenta el jardín digital como espacio no performativo, sin métricas, contra la cultura del rendimiento.</p>
+
+                <p>Hay tantas formas de mantener un jardín digital como personas dispuestas a sembrar y cuidar uno.</p>
+            </article>
+        </main>
+        <footer>
+            <p>&copy; 2026 Guia Carmona</p>
+        </footer>
+    </div>
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const body = document.body;
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                navMenu.classList.toggle('active');
+                body.classList.toggle('menu-open');
+                menuToggle.innerHTML = navMenu.classList.contains('active') ? '✕' : '☰';
+            });
+            document.addEventListener('click', function(event) {
+                if (!navMenu.contains(event.target) && !menuToggle.contains(event.target) && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    menuToggle.innerHTML = '☰';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
