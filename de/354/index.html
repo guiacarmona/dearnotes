@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>354</title>
+    <style>
+        @font-face {
+            font-family: 'Klarheit Kurrent';
+            src: url('../../assets/fonts/ESKlarheitKurrent-Light.woff2') format('woff2'),
+                 url('../../assets/fonts/ESKlarheitKurrent-Light.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Larsseit';
+            src: url('../../assets/fonts/Larsseit-Light.woff2') format('woff2'),
+                 url('../../assets/fonts/Larsseit-Light.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+        }
+        :root {
+            --bg-color: #fefefe;
+            --text-color: #000000;
+            --mustard: #D1B03C;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; }
+        body {
+            font-family: 'Larsseit', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-color);
+            background: var(--bg-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+        .countdown {
+            font-family: 'Klarheit Kurrent', serif;
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            margin-bottom: 1.5rem;
+        }
+        .label {
+            font-family: 'Larsseit', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 0.6rem;
+        }
+        .emojis {
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            letter-spacing: 0.1em;
+            margin-top: 1.2rem;
+        }
+        .unit { display: inline-block; min-width: 2.2ch; }
+        .sep { color: var(--mustard); }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="label">until</div>
+        <div class="countdown" id="countdown">
+            <span class="unit" id="d">--</span><span class="sep">d</span>
+            <span class="unit" id="h">--</span><span class="sep">h</span>
+            <span class="unit" id="m">--</span><span class="sep">m</span>
+            <span class="unit" id="s">--</span><span class="sep">s</span>
+        </div>
+        <div class="emojis">🪄🤝❤️⛪🍻🤯💫🪟👫❤️‍🔥⚡🦋️☀️✍️</div>
+    </main>
+    <script>
+        // Saturday 30 May 2026, 20:00 CEST (UTC+2)
+        const target = new Date('2026-05-30T20:00:00+02:00').getTime();
+        const d = document.getElementById('d');
+        const h = document.getElementById('h');
+        const m = document.getElementById('m');
+        const s = document.getElementById('s');
+        const pad = n => String(n).padStart(2, '0');
+        function tick() {
+            const diff = target - Date.now();
+            if (diff <= 0) {
+                d.textContent = '00';
+                h.textContent = '00';
+                m.textContent = '00';
+                s.textContent = '00';
+                return;
+            }
+            const totalSec = Math.floor(diff / 1000);
+            d.textContent = pad(Math.floor(totalSec / 86400));
+            h.textContent = pad(Math.floor((totalSec % 86400) / 3600));
+            m.textContent = pad(Math.floor((totalSec % 3600) / 60));
+            s.textContent = pad(totalSec % 60);
+        }
+        tick();
+        setInterval(tick, 1000);
+    </script>
+</body>
+</html>
