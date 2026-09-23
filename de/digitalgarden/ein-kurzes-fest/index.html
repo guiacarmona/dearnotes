@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Carmona · Ich schreibe dir von einem kurzen Fest</title>
+    <style>
+        @font-face {
+            font-family: 'Klarheit Kurrent';
+            src: url('../../../assets/fonts/ESKlarheitKurrent-Light.woff2') format('woff2'),
+                 url('../../../assets/fonts/ESKlarheitKurrent-Light.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Larsseit';
+            src: url('../../../assets/fonts/Larsseit-Light.woff2') format('woff2'),
+                 url('../../../assets/fonts/Larsseit-Light.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+        }
+        :root {
+            --bg-color: #fefefe;
+            --text-color: #000000;
+            --link-color: #D1B03C;
+            --border-color: #DCD1CD;
+            --secondary-color: #DCD1CD;
+            --mustard: #D1B03C;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Larsseit', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 18px; line-height: 1.7; letter-spacing: 0.02em;
+            color: var(--text-color); background: var(--bg-color); padding: 2rem 4rem;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { margin-bottom: 4rem; padding-bottom: 2rem; }
+        .title-bar {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 0.3rem; flex-wrap: wrap; gap: 0.5rem;
+        }
+        .language-switcher { font-family: 'Larsseit', sans-serif; font-size: 14px; white-space: nowrap; }
+        .language-switcher a {
+            color: var(--text-color); text-decoration: none; margin-left: 0.8rem;
+            border: none; transition: color 0.2s;
+        }
+        .language-switcher a:first-child { margin-left: 0; }
+        .language-switcher a:hover, .language-switcher a.active { color: var(--mustard); }
+        nav { font-family: 'Larsseit', sans-serif; font-size: 16px; margin-top: -0.8rem; }
+        nav a {
+            color: var(--text-color); text-decoration: none; margin-right: 1rem;
+            transition: color 0.2s; border: none;
+        }
+        nav a:hover, nav a.active { color: var(--mustard); }
+        main { max-width: 65ch; }
+        article { width: 100%; }
+        h1 {
+            font-family: 'Klarheit Kurrent', serif; font-size: 2.5rem; font-weight: 300;
+            letter-spacing: 0; line-height: 1.2; margin-bottom: 1.5rem;
+        }
+        h2 {
+            font-family: 'Klarheit Kurrent', serif; font-size: 1.8rem; font-weight: 300;
+            letter-spacing: 0; margin-top: 2.5rem; margin-bottom: 1rem;
+        }
+        p { margin-bottom: 1.4rem; }
+        a { color: var(--link-color); text-decoration: none; border-bottom: 1px solid var(--link-color); transition: border-color 0.2s; }
+        a:hover { border-bottom-color: transparent; }
+        em { font-style: italic; }
+        ul, ol { margin-left: 1.5rem; margin-bottom: 1.4rem; }
+        li { margin-bottom: 0.5rem; }
+        blockquote { border-left: 3px solid var(--border-color); padding-left: 1.5rem; margin: 2rem 0; font-style: italic; color: #666; }
+        .entry-image { margin: 2.5rem 0; }
+        .entry-image img { max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 4px; }
+        .entry-image figcaption { font-size: 0.8rem; color: #999; text-align: center; margin-top: 0.5rem; }
+        footer {
+            margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color);
+            font-size: 0.9rem; color: #666; font-family: 'Larsseit', sans-serif;
+        }
+        .menu-toggle {
+            display: none; background: none; border: none; font-size: 28px;
+            cursor: pointer; color: #333; padding: 10px; z-index: 1001;
+            position: fixed; top: 1rem; right: 1rem;
+        }
+        @media (max-width: 768px) {
+            body { padding: 1rem; font-size: 16px; }
+            .title-bar { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+            .title-bar .logo-link img { height: 5.5rem; }
+            .language-switcher { margin: 0; padding: 0; border: none; }
+            h1 { font-size: 2rem; }
+            .menu-toggle { display: block; }
+            nav {
+                display: none; position: fixed; top: 0; right: 0; width: 280px; height: 100vh;
+                background-color: white; flex-direction: column; padding: 80px 30px 20px 30px;
+                box-shadow: -2px 0 10px rgba(0,0,0,0.1); z-index: 1000; overflow-y: auto;
+            }
+            nav.active { display: flex; }
+            nav a { display: block; margin: 0 0 15px 0; padding: 10px 0; width: 100%; }
+            body.menu-open::before {
+                content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background-color: rgba(0,0,0,0.5); z-index: 999;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen">☰</button>
+            <div class="title-bar">
+                <a href="../../../" class="logo-link" style="border: none; display: inline-block; line-height: 0;">
+                    <img src="../../../assets/images/logo-guia.svg" alt="Logo" style="height: 4.5rem; display: block;">
+                </a>
+                <div class="language-switcher">
+                    <a href="../../../en/digitalgarden/">EN</a>
+                    <a href="../../../es/digitalgarden/una-fiesta-breve/">ES</a>
+                    <a href="../../../de/digitalgarden/ein-kurzes-fest/" class="active">DE</a>
+                </div>
+            </div>
+            <nav id="navMenu">
+                <a href="../../../de/">Hallo</a>
+                <a href="../../../de/dearnotes/">Dear Notes</a>
+                <a href="../../../de/digitalgarden/" class="active">Digitaler Garten</a>
+                <a href="../../../de/offerings/">Angebote</a>
+                <a href="../../../de/about/">Über mich</a>
+                <a href="../../../de/newsletter-contact/">Kontakt</a>
+            </nav>
+        </header>
+        <main>
+            <article>
+                <h1>Ich schreibe dir von einem kurzen Fest</h1>
+
+                <p>Letzten Samstag war ich in Bremen. Anfang des Sommers haben meine Nachbarin H. und ich entdeckt, dass wir beide große Verehrerinnen von Paula Modersohn-Becker sind. Weil sich ihr Geburtstag zum hundertfünfzigsten Mal jährt, gab es nicht viel zu planen. Wir mussten nur einen Samstag aussuchen und losfahren.</p>
+
+                <p>Ein paar ihrer Bilder habe ich zum ersten Mal 2022 in Basel gesehen. Ihr Werk hat mich beeindruckt und berührt, noch bevor ich fast irgendetwas über ihr Leben wusste. Wiedergefunden habe ich Paula auf einem anderen Weg, dem der Briefe. Mitten in meinem Brieffieber, das 2024 ausbrach, stieß ich auf ihre Korrespondenz mit Rainer Maria Rilke: eine innige Künstlerfreundschaft, die die beiden bis zuletzt getragen hat.</p>
+
+                <p>Als Paula zehn war, spielte sie mit ihren Cousinen in einer Sandgrube, und die Erde gab nach. Sie und ihre Cousine Maidli wurden rechtzeitig ausgegraben, ihre andere Cousine, Cora, nicht. Zwanzig Jahre später schreibt sie an Rilke: „Dieses Kind war das erste Ereignis in meinem Leben. Mit ihr kam der erste Schimmer von Bewusstsein in mein Leben.“</p>
+
+                <p>Der erste Schimmer von Bewusstsein. Seit ich diesen Satz gelesen habe, kreise ich um dieselbe Frage: Habe ich so ein Ereignis, eines, das mir meinen ersten Schimmer von Bewusstsein gab? Und wenn nicht, kann Paula es mir geben? Kann man sich Ereignisse, die Bewusstsein bringen, überhaupt leihen? Vielleicht gehen wir dafür ins Museum.</p>
+
+                <figure class="entry-image">
+                    <img src="../../../assets/images/paula-modersohn-becker-selbstbildnis-1906.jpg" alt="Paula Modersohn-Becker, Selbstbildnis am 6. Hochzeitstag" onerror="this.remove()">
+                    <figcaption>Paula Modersohn-Becker, <em>Selbstbildnis am 6. Hochzeitstag</em>, 1906.</figcaption>
+                </figure>
+
+                <p>Eine ihrer Biografinnen schrieb viel später, darauf gehe ihre Art zurück, in der Kunst niemals nachzugeben. Genauso lese ich diesen Eintrag aus ihrem Tagebuch vom 26. Juli 1900:</p>
+
+                <blockquote>
+                    <p>Mir kamen heute beim Malen die Gedanken her und hin und ich will sie aufschreiben für meine Lieben. Ich weiß, ich werde nicht sehr lange leben. Aber ist das denn traurig? Ist ein Fest schöner, weil es länger ist? Und mein Leben ist ein Fest, ein kurzes intensives Fest.</p>
+                </blockquote>
+
+                <p>Dieser Satz stand am Anfang der Ausstellung, gleich am Eingang, und ich blieb lange davor stehen. Woher wusste sie, dass sie nicht lange leben würde? Sie war nicht krank. Oder wusste sie gar nichts, und diejenige, die lebt, ohne daran zu denken, dass sie sterben wird, bin ich? Wie zerstreut ich doch bin.</p>
+
+                <p>Mit dreiundzwanzig erreichte sie, dass einige ihrer Bilder in der Bremer Kunsthalle gezeigt wurden. Die Kritik war gnadenlos: Ihre Figuren seien „hässlich“ und „unfertig“. Damals nahmen die Kunstakademien keine Frauen auf, und wer aus der Rolle der Mutter und Hausfrau fiel, galt als „unweiblich“. Sie malte ihr Leben lang weiter, und nicht, weil sie sich ihrer sicher gewesen wäre. Ihre Tagebücher sind voller Zweifel und voller Eile, voranzukommen und endlich so zu malen, wie sie wollte. Sie hat nie darauf gewartet, nicht mehr zu zweifeln.</p>
+
+                <figure class="entry-image">
+                    <img src="../../../assets/images/paula-modersohn-becker-stillleben-dahlien-1907.jpg" alt="Paula Modersohn-Becker, Stillleben mit Dahlien" onerror="this.remove()">
+                    <figcaption>Paula Modersohn-Becker, <em>Stillleben mit Dahlien</em>, 1907.</figcaption>
+                </figure>
+
+                <p>Ein Wort kehrt in ihren Heften immer wieder: das Werden. Das war Malen für sie. Es war kein Beruf und keine Laufbahn, sondern die Gestalt, die ihr Werden annahm.</p>
+
+                <p>Ich versuche, das, was Paula mich lehrt, in mein eigenes Gelände zu übersetzen, und frage mich, was dieses Werden für mich wäre. Ich male nicht. Ich schreibe Notizen, schreibe aus diesen Notizen Texte, und ich übersetze. Ich frage mich, ob die Notizen das sind, das Werden, oder es sein können. Du schreibst etwas auf, das du nicht ganz verstehst, und lässt es halb liegen, ungelöst. Monate später kommst du zurück, und die Notiz ist von allein gewachsen, oder du bist gewachsen, oder beides, und meistens ist es beides.</p>
+
+                <p>Paula hat nicht gewartet, bis ihr Stil feststand. Sie hat viel gemalt, und der Stil hat sich nach und nach gezeigt. Mit den Notizen und mit dem System ist es genauso. Man glaubt es nur schwer, wenn man seit einer halben Stunde überlegt, welche Kategorien oder Tags man nehmen soll.</p>
+
+                <p>Es will mir nicht in den Kopf, dass Paula in vierzehn Jahren siebenhundert Bilder und über tausend Zeichnungen geschaffen hat und starb, während fast alle noch bei ihr zu Hause standen. Ich denke an die Ungerechtigkeit, natürlich, aber vor allem daran, dass sie sie trotzdem gemalt hat.</p>
+
+                <figure class="entry-image">
+                    <img src="../../../assets/images/paula-modersohn-becker-maedchen-in-der-sonne-1897.jpg" alt="Paula Modersohn-Becker, Bildnis eines Mädchens in der Sonne" onerror="this.remove()">
+                    <figcaption>Paula Modersohn-Becker, <em>Bildnis eines Mädchens in der Sonne</em>, 1897.</figcaption>
+                </figure>
+
+                <p>Neulich sagte D. zu mir, er habe es in den letzten Monaten wie ein Puzzle gesehen, das sich vor seinen Augen zusammensetzt: Was ich eigentlich will, ist schreiben. Und das stimmt, ich weiß es.</p>
+
+                <p>Vielleicht warte ich seit Jahren darauf, dass mir jemand die Erlaubnis gibt, oder darauf, etwas fertig zu haben, oder dass die Zweifel vergehen. Oft habe ich auch befürchtet, das Notizenmachen sei nur eine Art, mich vom Schreiben abzulenken. Du kennst das: die Vorarbeit, mit der man der eigentlichen Arbeit ausweicht. Aber nein. Wenn ich mir bei etwas sicher bin, dann dabei: Die Notizen sind mein Gerüst.</p>
+
+                <p>Jetzt merke ich, dass Paula mir viele kleine Stücke Bewusstsein geschenkt hat. Notizen schreiben ist mein Werden als Schriftstellerin. Es ist nicht die Vorbereitung und nicht die Generalprobe, sondern das Werden. Und wenn es das Werden ist, dann geschieht es schon. Es gibt keinen Tag, an dem man Schriftstellerin wird, so wie es keinen Tag gibt, an dem der Herbst kommt.</p>
+            </article>
+        </main>
+        <footer>
+            <p>&copy; 2026 Guia Carmona</p>
+        </footer>
+    </div>
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const body = document.body;
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                navMenu.classList.toggle('active');
+                body.classList.toggle('menu-open');
+                menuToggle.innerHTML = navMenu.classList.contains('active') ? '✕' : '☰';
+            });
+            document.addEventListener('click', function(event) {
+                if (!navMenu.contains(event.target) && !menuToggle.contains(event.target) && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    menuToggle.innerHTML = '☰';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
