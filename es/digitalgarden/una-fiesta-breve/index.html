@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Carmona · Te escribo desde una fiesta breve</title>
+    <style>
+        @font-face {
+            font-family: 'Klarheit Kurrent';
+            src: url('../../../assets/fonts/ESKlarheitKurrent-Light.woff2') format('woff2'),
+                 url('../../../assets/fonts/ESKlarheitKurrent-Light.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Larsseit';
+            src: url('../../../assets/fonts/Larsseit-Light.woff2') format('woff2'),
+                 url('../../../assets/fonts/Larsseit-Light.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+        }
+        :root {
+            --bg-color: #fefefe;
+            --text-color: #000000;
+            --link-color: #D1B03C;
+            --border-color: #DCD1CD;
+            --secondary-color: #DCD1CD;
+            --mustard: #D1B03C;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Larsseit', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 18px; line-height: 1.7; letter-spacing: 0.02em;
+            color: var(--text-color); background: var(--bg-color); padding: 2rem 4rem;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { margin-bottom: 4rem; padding-bottom: 2rem; }
+        .title-bar {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 0.3rem; flex-wrap: wrap; gap: 0.5rem;
+        }
+        .language-switcher { font-family: 'Larsseit', sans-serif; font-size: 14px; white-space: nowrap; }
+        .language-switcher a {
+            color: var(--text-color); text-decoration: none; margin-left: 0.8rem;
+            border: none; transition: color 0.2s;
+        }
+        .language-switcher a:first-child { margin-left: 0; }
+        .language-switcher a:hover, .language-switcher a.active { color: var(--mustard); }
+        nav { font-family: 'Larsseit', sans-serif; font-size: 16px; margin-top: -0.8rem; }
+        nav a {
+            color: var(--text-color); text-decoration: none; margin-right: 1rem;
+            transition: color 0.2s; border: none;
+        }
+        nav a:hover, nav a.active { color: var(--mustard); }
+        main { max-width: 65ch; }
+        article { width: 100%; }
+        h1 {
+            font-family: 'Klarheit Kurrent', serif; font-size: 2.5rem; font-weight: 300;
+            letter-spacing: 0; line-height: 1.2; margin-bottom: 1.5rem;
+        }
+        h2 {
+            font-family: 'Klarheit Kurrent', serif; font-size: 1.8rem; font-weight: 300;
+            letter-spacing: 0; margin-top: 2.5rem; margin-bottom: 1rem;
+        }
+        p { margin-bottom: 1.4rem; }
+        a { color: var(--link-color); text-decoration: none; border-bottom: 1px solid var(--link-color); transition: border-color 0.2s; }
+        a:hover { border-bottom-color: transparent; }
+        em { font-style: italic; }
+        ul, ol { margin-left: 1.5rem; margin-bottom: 1.4rem; }
+        li { margin-bottom: 0.5rem; }
+        blockquote { border-left: 3px solid var(--border-color); padding-left: 1.5rem; margin: 2rem 0; font-style: italic; color: #666; }
+        .entry-image { margin: 2.5rem 0; }
+        .entry-image img { max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 4px; }
+        .entry-image figcaption { font-size: 0.8rem; color: #999; text-align: center; margin-top: 0.5rem; }
+        .salutation { margin-bottom: 2rem; }
+        footer {
+            margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color);
+            font-size: 0.9rem; color: #666; font-family: 'Larsseit', sans-serif;
+        }
+        .menu-toggle {
+            display: none; background: none; border: none; font-size: 28px;
+            cursor: pointer; color: #333; padding: 10px; z-index: 1001;
+            position: fixed; top: 1rem; right: 1rem;
+        }
+        @media (max-width: 768px) {
+            body { padding: 1rem; font-size: 16px; }
+            .title-bar { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+            .title-bar .logo-link img { height: 5.5rem; }
+            .language-switcher { margin: 0; padding: 0; border: none; }
+            h1 { font-size: 2rem; }
+            .menu-toggle { display: block; }
+            nav {
+                display: none; position: fixed; top: 0; right: 0; width: 280px; height: 100vh;
+                background-color: white; flex-direction: column; padding: 80px 30px 20px 30px;
+                box-shadow: -2px 0 10px rgba(0,0,0,0.1); z-index: 1000; overflow-y: auto;
+            }
+            nav.active { display: flex; }
+            nav a { display: block; margin: 0 0 15px 0; padding: 10px 0; width: 100%; }
+            body.menu-open::before {
+                content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background-color: rgba(0,0,0,0.5); z-index: 999;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+            <div class="title-bar">
+                <a href="../../../" class="logo-link" style="border: none; display: inline-block; line-height: 0;">
+                    <img src="../../../assets/images/logo-guia.svg" alt="Logo" style="height: 4.5rem; display: block;">
+                </a>
+                <div class="language-switcher">
+                    <a href="../../../en/digitalgarden/">EN</a>
+                    <a href="../../../es/digitalgarden/una-fiesta-breve/" class="active">ES</a>
+                    <a href="../../../de/digitalgarden/ein-kurzes-fest/">DE</a>
+                </div>
+            </div>
+            <nav id="navMenu">
+                <a href="../../../es/">Hola</a>
+                <a href="../../../es/dearnotes/">Dear Notes</a>
+                <a href="../../../es/digitalgarden/" class="active">Jardín digital</a>
+                <a href="../../../es/cursos/">Cursos</a>
+                <a href="../../../es/about/">Sobre mí</a>
+                <a href="../../../es/newsletter/">Newsletter</a>
+                <a href="../../../es/newsletter-contact/">Contacto</a>
+            </nav>
+        </header>
+        <main>
+            <article>
+                <h1>Te escribo desde una fiesta breve</h1>
+
+                <p>El sábado pasado estuve en Bremen. A principios de verano mi vecina H. y yo descubrimos que las dos somos muy fan de Paula Modersohn-Becker, y como se cumplen ciento cincuenta años de su nacimiento no hubo mucho que planear, solo elegir un sábado y ponernos en camino.</p>
+
+                <p>Vi algunos cuadros suyos por primera vez en Basilea, en 2022. Su obra me impresionó y me conmovió sin que yo supiera todavía casi nada de su vida. Me reencontré con Paula por otro camino, el de las cartas. Desde 2024, en plena fiebre epistolar, me topé con su correspondencia con Rainer Maria Rilke: una amistad intensa y artística que sostuvieron hasta el final.</p>
+
+                <p>Cuando Paula tenía diez años jugaba con sus primas en un arenal y la tierra cedió. A ella y a su prima Maidli las desenterraron a tiempo, pero a su otra prima, Cora, no. Veinte años después le escribe a Rilke: «Nosotras nos salvamos. El primer acontecimiento de mi vida fue aquella niña. Con ella me llegó el primer atisbo de conciencia».</p>
+
+                <p>El primer atisbo de conciencia. Desde que leí esa frase vengo dándole vueltas a lo mismo: ¿tengo yo un acontecimiento así, uno que me diera mi primer atisbo de conciencia? Y si no lo tengo, ¿me lo puede dar Paula? ¿Acaso se pueden prestar los acontecimientos que traen conciencia? A lo mejor para eso vamos a los museos.</p>
+
+                <figure class="entry-image">
+                    <img src="../../../assets/images/paula-modersohn-becker-selbstbildnis-1906.jpg" alt="Paula Modersohn-Becker, Autorretrato en el sexto aniversario de boda" onerror="this.remove()">
+                    <figcaption>Paula Modersohn-Becker, <em>Autorretrato en el sexto aniversario de boda</em>, 1906.</figcaption>
+                </figure>
+
+                <p>Una amiga suya escribió años después que a aquello se debía su forma de no ceder nunca en lo artístico. Yo leo en la misma línea esta anotación de su diario, del 26 de julio de 1900:</p>
+
+                <blockquote>
+                    <p>Hoy, pintando, los pensamientos me iban y me venían, y quiero anotarlos para los míos. Sé que no viviré mucho tiempo. Pero ¿es triste eso? ¿Es más bella una fiesta cuanto más dura? Y mi vida es una fiesta, una fiesta breve e intensa.</p>
+                </blockquote>
+
+                <p>Esa frase estaba al principio de la exposición, nada más entrar, y me quedé delante un buen rato. ¿Cómo sabía ella que no iba a vivir mucho? No estaba enferma. ¿O no sabía nada, y la que vive sin acordarse de que se va a morir soy yo? Qué gran despiste.</p>
+
+                <p>Con veintitrés años consiguió que le expusieran algunos cuadros en la Kunsthalle de Bremen. La crítica fue despiadada: sus figuras eran «feas» y «sin terminar». En aquella época las academias de bellas artes no admitían mujeres, y a la que se salía del papel de madre y ama de casa la llamaban «poco femenina». Siguió pintando toda su vida, no porque estuviera segura de sí misma: sus diarios están llenos de dudas y de prisa por avanzar, por llegar a pintar como quería. Nunca esperó a dejar de dudar.</p>
+
+                <figure class="entry-image">
+                    <img src="../../../assets/images/paula-modersohn-becker-stillleben-dahlien-1907.jpg" alt="Paula Modersohn-Becker, Bodegón con dalias" onerror="this.remove()">
+                    <figcaption>Paula Modersohn-Becker, <em>Bodegón con dalias</em>, 1907.</figcaption>
+                </figure>
+
+                <p>Hay una palabra que vuelve una y otra vez en sus cuadernos: <em lang="de">das Werden</em>, el ir siendo. Eso era pintar para ella, no un oficio ni una carrera, sino la forma que tomaba su ir siendo.</p>
+
+                <p>Intento traducir a mi terreno lo que Paula me enseña, y me pregunto qué sería para mí ese <em lang="de">Werden</em>. Yo no pinto: escribo notas y escribo textos de esas notas y traduzco. Me pregunto si las notas son eso, el <em lang="de">Werden</em>, o pueden serlo: escribes algo que no entiendes del todo, lo dejas ahí a medias, sin resolver, y meses después vuelves y la nota ha crecido sola, o has crecido tú, o las dos cosas, que es lo que suele pasar.</p>
+
+                <p>Paula no esperó a tener el estilo resuelto, pintó mucho, y el estilo fue apareciendo. Con las notas y con el sistema pasa igual, aunque cueste creérselo cuando llevas media hora decidiendo qué categorías o tags usar.</p>
+
+                <p>Se me hace muy raro que Paula pintara setecientos cuadros y más de mil dibujos en catorce años y muriera con casi todos en casa. Pienso en la injusticia, claro, pero sobre todo en que los pintara igual.</p>
+
+                <figure class="entry-image">
+                    <img src="../../../assets/images/paula-modersohn-becker-maedchen-in-der-sonne-1897.jpg" alt="Paula Modersohn-Becker, Retrato de una niña al sol" onerror="this.remove()">
+                    <figcaption>Paula Modersohn-Becker, <em>Retrato de una niña al sol</em>, 1897.</figcaption>
+                </figure>
+
+                <p>Hace poco D. me dijo que en los últimos meses lo ha ido viendo como un puzle que se completa delante de sus ojos: que lo que yo de verdad quiero es escribir. Y es verdad, lo sé.</p>
+
+                <p>Quizás lleve años esperando a que alguien me dé permiso, o a tener algo terminado, o a que se me quiten las dudas. También he temido a menudo que tomar notas sea una forma de distraerme de escribir. Ya sabes: la tarea previa con la que evitas la verdadera tarea. Pero no. Si algo tengo claro es que las notas son mi andamio.</p>
+
+                <p>Ahora me doy cuenta de que Paula me ha dado muchos pedacitos de conciencia. Escribir notas es mi <em lang="de">Werden</em> como escritora. No la preparación, no el ensayo general: el ir siendo. Y si es el ir siendo, entonces ya está pasando. No hay un día en el que una se vuelva escritora, como no hay un día en el que llegue el otoño.</p>
+            </article>
+        </main>
+        <footer>
+            <p>&copy; 2026 Guia Carmona</p>
+        </footer>
+    </div>
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const body = document.body;
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                navMenu.classList.toggle('active');
+                body.classList.toggle('menu-open');
+                menuToggle.innerHTML = navMenu.classList.contains('active') ? '✕' : '☰';
+            });
+            document.addEventListener('click', function(event) {
+                if (!navMenu.contains(event.target) && !menuToggle.contains(event.target) && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    menuToggle.innerHTML = '☰';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
