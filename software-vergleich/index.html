@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Wissensmanagement-Software für kleine Teams: ein Vergleich · Team Knowledge</title>
+<meta name="description" content="Fünf Lösungen für gemeinsames Wissensmanagement in kleinen Teams im Vergleich: Stackfield, Nuclino, Slite, Obsidian und Joplin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #EDF0F3;
+    --sheet: #FFFFFF;
+    --ink: #1E2A38;
+    --muted: #55616F;
+    --line: #CBD2DA;
+    --pip: #7FA38A;
+    --pip-off: #D6DCE2;
+    --focus: #2F5FD0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #161C23;
+      --sheet: #1F2730;
+      --ink: #E6EAEE;
+      --muted: #A3AEBA;
+      --line: #36414D;
+      --pip: #6C917A;
+      --pip-off: #3A4652;
+      --focus: #8FB0FF;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+  main { max-width: 44rem; margin: 0 auto; padding: 3.5rem 1.25rem 4rem; }
+  h1 { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.1; margin: 0 0 1rem; letter-spacing: -0.01em; }
+  h2 { font-size: 1.5rem; line-height: 1.25; margin: 3.5rem 0 1rem; }
+  h3 { font-size: 1.125rem; margin: 1.25rem 0 .25rem; }
+  p { margin: 0 0 1rem; max-width: 38rem; }
+  ul { padding-left: 1.25rem; margin: 0 0 1rem; }
+  li { margin-bottom: .25rem; }
+  .lead { font-size: 1.25rem; color: var(--muted); }
+  .small { font-size: 1rem; color: var(--muted); }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+  /* Comparison table: wider than the text column */
+  .table-wrap {
+    margin: 1.5rem -1.25rem 1rem;
+    overflow-x: auto;
+    background: var(--sheet);
+    border-radius: .5rem;
+  }
+  @media (min-width: 60rem) {
+    .table-wrap { margin-left: -8rem; margin-right: -8rem; }
+  }
+  table { border-collapse: collapse; width: 100%; min-width: 46rem; font-size: 1rem; }
+  th, td { text-align: left; vertical-align: top; padding: .8rem 1rem; border-bottom: 1px solid var(--line); }
+  thead th { font-weight: 700; border-bottom: 2px solid var(--line); }
+  tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+  tbody th { font-weight: 700; white-space: nowrap; }
+
+  /* Rating: three pips, the word stays for screen readers and clarity */
+  .rate { display: inline-flex; align-items: center; gap: .5rem; white-space: nowrap; }
+  .pips { display: inline-flex; gap: 3px; }
+  .pips i { width: .6rem; height: .6rem; border-radius: 50%; background: var(--pip-off); }
+  .r3 .pips i, .r2 .pips i:nth-child(-n+2), .r1 .pips i:first-child { background: var(--pip); }
+  .rate span { color: var(--muted); font-size: .95rem; }
+
+  /* Tool profiles */
+  details {
+    background: var(--sheet);
+    border-radius: .5rem;
+    margin-bottom: .75rem;
+    padding: 0 1.5rem;
+  }
+  summary {
+    cursor: pointer;
+    padding: 1rem 0;
+    list-style: none;
+    display: flex; gap: 1rem; justify-content: space-between; align-items: baseline;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary strong { font-size: 1.2rem; }
+  summary .gist { color: var(--muted); font-size: 1rem; text-align: right; }
+  summary::after { content: "+"; font-weight: 700; font-size: 1.25rem; }
+  details[open] summary::after { content: "–"; }
+  details[open] { padding-bottom: 1rem; }
+  details > div { border-top: 1px solid var(--line); padding-top: .5rem; }
+  @media (max-width: 36rem) { summary { flex-wrap: wrap; } summary .gist { text-align: left; order: 3; width: 100%; } }
+
+  footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 1rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Wissensmanagement-Software für kleine Teams</h1>
+  <p class="lead">Diese Seite vergleicht fünf Lösungen, mit denen kleine Teams ihr Wissen gemeinsam festhalten können: Stackfield, Nuclino, Slite, Obsidian und Joplin.</p>
+  <p>Ausgangspunkt waren diese Anforderungen: kein eigenes Hosting, einfache Bedienung auch für wenig technikaffine Kolleginnen und Kollegen, gute Zusammenarbeit, Datenschutz nach DSGVO, wenig Verwaltungsaufwand und möglichst geringe Abhängigkeit von einem Anbieter.</p>
+
+  <h2>Auf einen Blick</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Lösung</th>
+          <th scope="col">Bedienung</th>
+          <th scope="col">Datenschutz</th>
+          <th scope="col">Teamarbeit</th>
+          <th scope="col">Datenportabilität</th>
+          <th scope="col">Einstieg pro Person und Monat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"><a href="https://www.stackfield.com/">Stackfield</a></th>
+          <td><span class="rate r3"><span class="pips" aria-hidden="true"><i></i><i></i><i></i></span><span>sehr gut</span></span></td>
+          <td><span class="rate r3"><span class="pips" aria-hidden="true"><i></i><i></i><i></i></span><span>sehr gut</span></span></td>
+          <td><span class="rate r3"><span class="pips" aria-hidden="true"><i></i><i></i><i></i></span><span>sehr gut</span></span></td>
+          <td><span class="rate r1"><span class="pips" aria-hidden="true"><i></i><i></i><i></i></span><span>mittel</span></span></td>
+          <td>9 € (Starter)</td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="https://www.nuclino.com/">Nuclino</a></th>
+          <td><span class="rate r3"><span class="pips" aria-hidden="true"><i></i><i></i><i></i></span><span>sehr gut</span></span></td>
+          <td><span class="rate r2"><span class="pips" aria-hidden="true"><i></i><i></i><i></i></span><span>gut</span></span></td>
+          <td><span class="rate r3"><span class="pips" aria-hidden="true"><i></i><i></i><i></i></span><span>sehr gut</span></span></td>
+          <td><span class="rate r2"><span class="pips" aria-hidden="true"><i></i><i></i><i></i></span><span>gut</span></span></td>
+          <td>6 € (Starter)</td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="https://slite.com/">Slite</a></th>
+          <td><span class="rate r3"><span class="pips" aria-hidden="true"><i></i><i></i><i></i></span><span>sehr gut</span></span></td>
+          <td><span class="rate r2"><span class="pips" aria-hidden="true"><i></i><i></i><i></i></span><span>gut</span></span></td>
+          <td><span class="rate r3"><span class="pips" aria-hidden="true"><i></i><i></i><i></i></span><span>sehr gut</span></span></td>
+          <td><span class="rate r1"><span class="pips" aria-hidden="true"><i></i><i></i><i></i></span><span>mittel</span></span></td>
+          <td>10 US-Dollar (Basic)</td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="https://obsidian.md/">Obsidian + Sync</a></th>
+          <td><span class="rate r2"><span class="pips" aria-hidden="true"><i></i><i></i><i></i></span><span>gut</span></span></td>
+          <td><span class="rate r3"><span class="pips" aria-hidden="true"><i></i><i></i><i></i></span><span>sehr gut</span></span></td>
+          <td><span class="rate r1"><span class="pips" aria-hidden="true"><i></i><i></i><i></i></span><span>mittel</span></span></td>
+          <td><span class="rate r3"><span class="pips" aria-hidden="true"><i></i><i></i><i></i></span><span>sehr gut</span></span></td>
+          <td>4 US-Dollar (Sync Standard)</td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="https://joplinapp.org/">Joplin + Cloud</a></th>
+          <td><span class="rate r2"><span class="pips" aria-hidden="true"><i></i><i></i><i></i></span><span>gut</span></span></td>
+          <td><span class="rate r3"><span class="pips" aria-hidden="true"><i></i><i></i><i></i></span><span>sehr gut</span></span></td>
+          <td><span class="rate r2"><span class="pips" aria-hidden="true"><i></i><i></i><i></i></span><span>gut</span></span></td>
+          <td><span class="rate r2"><span class="pips" aria-hidden="true"><i></i><i></i><i></i></span><span>gut</span></span></td>
+          <td>2,40 € (Cloud Basic)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small">Preisstand: 16.09.2026. Angegeben ist jeweils der günstigste reguläre Tarif als Monatspreis bei jährlicher Zahlung, ohne Testphasen oder Rabatte, in der Währung des Anbieters. Die Bewertungen beziehen sich auf die Lösungen insgesamt, nicht nur auf den Einstiegstarif.</p>
+  <ul class="small">
+    <li>Stackfield Starter: mindestens 5 Personen, also mindestens 45 € pro Monat; höchstens 10 Personen und 3 Räume.</li>
+    <li>Nuclino Free: höchstens 50 Dokumente, 3 Canvases und 2 GB Speicher.</li>
+    <li>Obsidian Sync Standard: 1 synchronisierter Vault, 1 GB Speicher, höchstens 5 MB pro Datei.</li>
+    <li>Joplin Cloud Basic: 2 GB Speicher, höchstens 10 MB pro Notiz oder Anhang. Mitarbeit an freigegebenen Notizbüchern ist möglich, eigene Freigaben und eine zentrale Teamverwaltung gibt es erst mit Joplin Cloud Teams.</li>
+  </ul>
+
+  <h2>Die Lösungen im Einzelnen</h2>
+
+  <details>
+    <summary><strong>Stackfield</strong><span class="gist">Deutscher Anbieter, starker Datenschutz</span></summary>
+    <div>
+      <p>Stackfield ist eine deutsche Collaboration-Plattform. Sie verbindet Wissensmanagement mit Aufgaben, Projekten, Dateien und Kommunikation.</p>
+      <h3>Datenschutz</h3>
+      <p>Die Daten liegen in deutschen Rechenzentren und werden laut Anbieter nur innerhalb der EU verarbeitet, ausschließlich mit europäischen Unterauftragnehmern. Das ist ein struktureller Vorteil gegenüber vielen internationalen Anbietern.</p>
+      <h3>Bedienung</h3>
+      <p>Die Oberfläche ist eher klassisch und auch für wenig erfahrene Nutzerinnen und Nutzer zugänglich. Weil Stackfield deutlich mehr kann als ein reines Wiki, wirkt sie aber etwas komplexer.</p>
+      <h3>Passt, wenn</h3>
+      <p>Datenschutz und ein deutscher Anbieter besonders wichtig sind, und wenn Aufgaben und interne Kommunikation gleich mit abgedeckt werden sollen.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><strong>Nuclino</strong><span class="gist">Sehr einfach, ein schlichtes Team-Wiki</span></summary>
+    <div>
+      <p>Nuclino ist bewusst reduziert. Dokumente lassen sich hierarchisch ordnen, verlinken, gemeinsam in Echtzeit bearbeiten, durchsuchen und unter anderem als Markdown oder PDF exportieren. Rollen, Zugriffsrechte, Zwei-Faktor-Anmeldung und Versionshistorie sind vorhanden.</p>
+      <h3>Datenschutz</h3>
+      <p>Nuclino ist eine deutsche GmbH, die wichtigsten Dienstleister speichern Daten in Europa. Einzelne Unterauftragnehmer sind jedoch US-Unternehmen, und manche Daten können außerhalb Europas verarbeitet werden. Die Daten sind verschlüsselt gespeichert, aber nicht Ende-zu-Ende-verschlüsselt.</p>
+      <h3>Bedienung</h3>
+      <p>Hier liegt die größte Stärke. Nuclino verzichtet auf vieles, was Notion kompliziert macht, und ist dadurch auch für wenig technikaffine Menschen und kleine Teams ohne IT-Abteilung leicht zu verstehen.</p>
+      <h3>Passt, wenn</h3>
+      <p>Einfachheit wichtiger ist als größtmögliche Datensouveränität.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><strong>Slite</strong><span class="gist">Modern und übersichtlich, auf Google Cloud</span></summary>
+    <div>
+      <p>Slite ist eine spezialisierte Wissensplattform mit moderner, einfacher Oberfläche. Der Schwerpunkt liegt auf Dokumentation, Suche und KI-gestützter Wissenssuche.</p>
+      <h3>Datenschutz</h3>
+      <p>Slite arbeitet nach eigenen Angaben DSGVO-konform. Die Daten liegen in der EU, auf Google Cloud in Belgien, und sind bei Übertragung und Speicherung verschlüsselt. Eine Ende-zu-Ende-Verschlüsselung gibt es nicht, Slite kann also technisch auf Inhalte zugreifen. Für Teams, die Abhängigkeit von US-Anbietern möglichst vermeiden wollen, ist die Google-Infrastruktur relevant.</p>
+      <h3>Bedienung</h3>
+      <p>Sehr gut. Wie Nuclino ist Slite bewusst schlichter aufgebaut als Notion oder Confluence.</p>
+      <h3>Passt, wenn</h3>
+      <p>Benutzerfreundlichkeit im Vordergrund steht und ein konsequent europäischer Datenschutz nicht das wichtigste Kriterium ist.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><strong>Obsidian mit Obsidian Sync</strong><span class="gist">Eigene Markdown-Dateien, viel Unabhängigkeit</span></summary>
+    <div>
+      <p>Obsidian funktioniert grundsätzlich anders: Das Wissen liegt nicht in einer Cloud-Datenbank, sondern als normale Markdown-Dateien in Ordnern auf dem eigenen Rechner. Auch ohne Obsidian bleiben alle Inhalte lesbar. Die Abhängigkeit vom Anbieter ist dadurch sehr gering.</p>
+      <h3>Datenschutz</h3>
+      <p>Obsidian Sync ist standardmäßig Ende-zu-Ende-verschlüsselt (AES-256), das Obsidian-Team kann die Inhalte laut eigener Aussage nicht lesen. Die Dateien auf dem eigenen Rechner sind dadurch aber nicht automatisch verschlüsselt. Dafür sollte die Festplattenverschlüsselung von Windows oder macOS aktiviert sein.</p>
+      <h3>Teamarbeit</h3>
+      <p>Hier liegt die größte Schwäche. Obsidian ist ursprünglich für persönliches Wissensmanagement gedacht. Gemeinsame Vaults sind möglich, Benutzer- und Rechteverwaltung aber schwächer als bei den anderen Lösungen. Für sehr kleine Teams kann das reichen.</p>
+      <h3>Bedienung</h3>
+      <p>Die Grundlagen sind einfach. Durch Plugins und viele Einstellungen kann Obsidian aber schnell technisch wirken. Für wenig technikaffine Menschen sollte man es bewusst schlicht einrichten.</p>
+      <h3>Passt, wenn</h3>
+      <p>Datenhoheit, Markdown und langfristige Unabhängigkeit wichtiger sind als eine klassische Teamverwaltung.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><strong>Joplin mit Joplin Cloud</strong><span class="gist">Open Source, EU-Hosting, Ende-zu-Ende-verschlüsselt</span></summary>
+    <div>
+      <p>Joplin ist eine Open-Source-Anwendung für Notizen und Wissensmanagement. Sie unterstützt Markdown und Rich-Text, Notizbücher, Anhänge, Tags, Synchronisation und gemeinsame Notizbücher.</p>
+      <h3>Datenschutz</h3>
+      <p>Joplin bietet Ende-zu-Ende-Verschlüsselung: Weder der Synchronisationsdienst noch Joplin selbst können die Inhalte lesen. Die Server von Joplin Cloud stehen laut Anbieter in Paris, also in der EU.</p>
+      <h3>Teamarbeit</h3>
+      <p>Joplin Cloud Teams bietet eine zentrale Benutzerverwaltung, gemeinsame Abrechnung und gemeinsames Arbeiten an Notizbüchern. Damit ist Joplin organisatorisch stärker auf Teams ausgerichtet als Obsidian.</p>
+      <h3>Bedienung</h3>
+      <p>Relativ einfach, wirkt aber weniger modern als Nuclino oder Slite. Wer klassische Notizprogramme oder Ordnerstrukturen wie in Outlook gewohnt ist, findet sich oft gerade deshalb gut zurecht.</p>
+      <h3>Einschränkung</h3>
+      <p>Joplin nutzt Markdown, die Notizen liegen aber nicht als einfache Dateien in Ordnern wie bei Obsidian.</p>
+      <h3>Passt, wenn</h3>
+      <p>Datenschutz, Ende-zu-Ende-Verschlüsselung, Open Source und eine zentrale Teamverwaltung zusammenkommen sollen.</p>
+    </div>
+  </details>
+
+  <h2>Eine vorläufige Einordnung</h2>
+  <p>Für einen ersten Praxistest bieten sich drei Lösungen an, die sehr unterschiedliche Schwerpunkte setzen:</p>
+  <ul>
+    <li><strong>Stackfield</strong>, wenn Datenschutz und ein deutscher Anbieter an erster Stelle stehen.</li>
+    <li><strong>Nuclino</strong>, wenn die einfache Bedienung am wichtigsten ist.</li>
+    <li><strong>Joplin Cloud</strong>, wenn Open Source, EU-Hosting und Ende-zu-Ende-Verschlüsselung zusammen gewünscht sind.</li>
+  </ul>
+  <p>Obsidian lohnt einen zusätzlichen Test, wenn eine dateibasierte Wissensbasis langfristig interessant ist. Slite ist sehr benutzerfreundlich, hat durch Google Cloud und fehlende Ende-zu-Ende-Verschlüsselung aber schwächere Datenschutzmerkmale.</p>
+
+  <footer>
+    <p>Team Knowledge – Guia Carmona und Daniel Bender</p>
+  </footer>
+</main>
+</body>
+</html>
