@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dateiablage mit PAR: Projekte, Arbeitsbereiche, Archiv · Team Knowledge</title>
+<meta name="description" content="Eine einfache Ablagestruktur für Teams: Projekte, Arbeitsbereiche, Archiv. Eine vereinfachte Form von PARA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #EDF0F3;
+    --sheet: #FFFFFF;
+    --ink: #1E2A38;
+    --muted: #55616F;
+    --line: #CBD2DA;
+    --projekte: #E3B23C;
+    --bereiche: #7FA38A;
+    --archiv: #9AA5B1;
+    --focus: #2F5FD0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #161C23;
+      --sheet: #1F2730;
+      --ink: #E6EAEE;
+      --muted: #A3AEBA;
+      --line: #36414D;
+      --projekte: #C99A2E;
+      --bereiche: #6C917A;
+      --archiv: #7D8894;
+      --focus: #8FB0FF;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+  main { max-width: 44rem; margin: 0 auto; padding: 3.5rem 1.25rem 4rem; }
+  h1 { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.1; margin: 0 0 1rem; letter-spacing: -0.01em; }
+  h2 { font-size: 1.5rem; line-height: 1.25; margin: 3.5rem 0 1rem; }
+  p { margin: 0 0 1rem; max-width: 38rem; }
+  .lead { font-size: 1.25rem; color: var(--muted); }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+  /* The binder: three divider tabs */
+  .binder { margin-top: 2.5rem; }
+  .tabs { display: flex; gap: .375rem; padding-left: .75rem; }
+  .tab {
+    font: inherit; font-weight: 700; font-size: 1rem;
+    color: var(--ink);
+    border: 0; cursor: pointer;
+    padding: .6rem 1.1rem .5rem;
+    border-radius: .6rem .6rem 0 0;
+    background: color-mix(in srgb, var(--c) 45%, var(--paper));
+    transform: translateY(.35rem);
+    transition: transform .18s ease, background-color .18s ease;
+  }
+  .tab[aria-selected="true"] { background: var(--c); transform: translateY(0); }
+  .tab:hover { transform: translateY(0); }
+  .tab[data-k="p"] { --c: var(--projekte); }
+  .tab[data-k="b"] { --c: var(--bereiche); }
+  .tab[data-k="a"] { --c: var(--archiv); }
+  .panel {
+    background: var(--sheet);
+    border-top: .5rem solid var(--c);
+    border-radius: 0 0 .5rem .5rem;
+    padding: 1.5rem 1.5rem 1.25rem;
+    min-height: 11rem;
+  }
+  .panel[data-k="p"] { --c: var(--projekte); }
+  .panel[data-k="b"] { --c: var(--bereiche); }
+  .panel[data-k="a"] { --c: var(--archiv); }
+  .panel h3 { margin: 0 0 .5rem; font-size: 1.25rem; }
+  .panel .test { color: var(--muted); font-style: italic; margin-bottom: 0; }
+
+  /* Folder tree */
+  .tree {
+    background: var(--sheet);
+    border-radius: .5rem;
+    padding: 1.25rem 1.5rem;
+    overflow-x: auto;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: .95rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+  .tree .p { border-left: 4px solid var(--projekte); padding-left: .5rem; }
+  .tree .b { border-left: 4px solid var(--bereiche); padding-left: .5rem; }
+  .tree .a { border-left: 4px solid var(--archiv); padding-left: .5rem; }
+  .tree span { display: block; white-space: pre; }
+
+  /* The three questions: a real sequence */
+  ol.questions { list-style: none; counter-reset: q; padding: 0; margin: 0 0 1rem; }
+  ol.questions li {
+    counter-increment: q;
+    display: grid; grid-template-columns: 2.5rem 1fr; gap: .75rem;
+    padding: 1rem 0; border-bottom: 1px solid var(--line);
+  }
+  ol.questions li::before {
+    content: counter(q);
+    font-weight: 700; font-size: 1.5rem; line-height: 1.2;
+  }
+  ol.questions strong { white-space: nowrap; }
+
+  dl.rules { margin: 0; }
+  dl.rules dt { font-weight: 700; margin-top: 1.25rem; }
+  dl.rules dd { margin: .25rem 0 0; max-width: 38rem; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .9em; background: var(--sheet); padding: .1em .35em; border-radius: .25rem; }
+
+  footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 1rem; }
+
+  @media (prefers-reduced-motion: reduce) { .tab { transition: none; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Dateiablage mit PAR</h1>
+  <p class="lead">Diese Seite beschreibt eine einfache Art, gemeinsam Dateien abzulegen: in Projekten, Arbeitsbereichen und einem Archiv.</p>
+  <p>Ablagen nach Themen wirken ordentlich, bis ein Dokument zu drei Themen passt und nur noch eine Person weiß, wo es liegt. PAR fragt stattdessen: Woran arbeitet ihr gerade, wofür seid ihr dauerhaft zuständig, was ist erledigt? Das kann jede im Team gleich beantworten.</p>
+
+  <div class="binder">
+    <div class="tabs" role="tablist" aria-label="Die drei Ebenen">
+      <button class="tab" role="tab" data-k="p" id="t-p" aria-controls="p-p" aria-selected="true">Projekte</button>
+      <button class="tab" role="tab" data-k="b" id="t-b" aria-controls="p-b" aria-selected="false" tabindex="-1">Arbeitsbereiche</button>
+      <button class="tab" role="tab" data-k="a" id="t-a" aria-controls="p-a" aria-selected="false" tabindex="-1">Archiv</button>
+    </div>
+    <section class="panel" data-k="p" id="p-p" role="tabpanel" aria-labelledby="t-p">
+      <h3>Projekte</h3>
+      <p>Vorhaben mit einem Ziel und einem Ende, zum Beispiel ein Umzug, ein Förderantrag oder die Einarbeitung einer neuen Kollegin.</p>
+      <p class="test">Es gibt einen Zeitpunkt, an dem es fertig ist.</p>
+    </section>
+    <section class="panel" data-k="b" id="p-b" role="tabpanel" aria-labelledby="t-b" hidden>
+      <h3>Arbeitsbereiche</h3>
+      <p>Dauerhafte Zuständigkeiten und Aufgaben, zum Beispiel Beratung, Verwaltung oder Finanzen. Material, das dort gebraucht wird, liegt einfach mit im Bereich.</p>
+      <p class="test">Es läuft weiter, solange es die Organisation gibt.</p>
+    </section>
+    <section class="panel" data-k="a" id="p-a" role="tabpanel" aria-labelledby="t-a" hidden>
+      <h3>Archiv</h3>
+      <p>Abgeschlossene Projekte und Bereiche, die gerade nicht aktiv sind. Hier wird nichts gelöscht, nur beiseitegelegt.</p>
+      <p class="test">Wird nicht mehr bearbeitet, soll aber auffindbar bleiben.</p>
+    </section>
+  </div>
+
+  <h2>Warum PAR statt PARA</h2>
+  <p>PAR ist eine vereinfachte Form von PARA nach Tiago Forte. Die vierte Ebene, „Ressourcen“, bekommt keinen eigenen Platz. Ressourcen sind Material ohne eigene Zuständigkeit, also Vorlagen, Broschüren, Adresslisten oder Fachtexte. Sie sind ein Nice-to-have und liegen dort, wo sie gebraucht werden: direkt im passenden Arbeitsbereich, und erst wenn es mehr wird, in einem eigenen Unterordner.</p>
+
+  <h2>So kann es aussehen</h2>
+  <p>Die Nummern halten die Reihenfolge fest. Die Namen der Bereiche passt ihr an eure Arbeit an.</p>
+  <pre class="tree" aria-label="Beispielhafte Ordnerstruktur"><span class="p">1_Projekte/</span><span class="p">├── 2026_Umzug_neue_Raeume/</span><span class="p">├── 2026_Foerderantrag/</span><span class="p">└── 2026_Einarbeitung_neue_Kollegin/</span><span class="b">2_Arbeitsbereiche/</span><span class="b">├── Beratung/</span><span class="b">│   └── Vorlagen/</span><span class="b">├── Verwaltung/</span><span class="b">├── Finanzen_und_Foerderung/</span><span class="b">├── Oeffentlichkeitsarbeit/</span><span class="b">└── Team/</span><span class="a">3_Archiv/</span><span class="a">├── Projekte/</span><span class="a">└── Arbeitsbereiche/</span></pre>
+
+  <h2>Wohin mit einem neuen Dokument?</h2>
+  <p>Drei Fragen, in dieser Reihenfolge:</p>
+  <ol class="questions">
+    <li><span>Gehört es zu einem laufenden Vorhaben mit Ende? Dann in <strong>Projekte</strong>.</span></li>
+    <li><span>Gehört es zu einer dauerhaften Aufgabe, oder ist es Material, das dort gebraucht wird? Dann in <strong>Arbeitsbereiche</strong>.</span></li>
+    <li><span>Wird es nicht mehr gebraucht, soll aber bleiben? Dann ins <strong>Archiv</strong>.</span></li>
+  </ol>
+
+  <h2>Faustregeln</h2>
+  <dl class="rules">
+    <dt>Projekt abgeschlossen?</dt>
+    <dd>Den ganzen Projektordner nach <code>3_Archiv/Projekte</code> verschieben. Nichts wird gelöscht, und die aktive Ablage bleibt übersichtlich.</dd>
+    <dt>Benennung</dt>
+    <dd>Projekte beginnen mit dem Jahr, Dateien mit dem Datum im Format <code>JJJJ-MM-TT</code>, zum Beispiel <code>2026-10-12_Mietvertrag_Entwurf.pdf</code>. So sortieren sie sich von selbst.</dd>
+    <dt>Lieber einfach als perfekt</dt>
+    <dd>Wenn ein Dokument in zwei Ordner passen würde, legt es dort ab, wo ihr es zuerst suchen würdet. Die Struktur darf wachsen, sobald ihr merkt, was fehlt.</dd>
+  </dl>
+
+  <footer>
+    <p>Team Knowledge – Guia Carmona und Daniel Bender</p>
+  </footer>
+</main>
+<script>
+  (function () {
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+    function select(tab) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      });
+      tab.focus();
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { select(t); });
+      t.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight') select(tabs[(i + 1) % tabs.length]);
+        if (e.key === 'ArrowLeft') select(tabs[(i - 1 + tabs.length) % tabs.length]);
+      });
+    });
+  })();
+</script>
+</body>
+</html>
